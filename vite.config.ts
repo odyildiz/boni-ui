@@ -7,4 +7,12 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  resolve: {
+    extensions: ['.js', '.ts', '.jsx', '.tsx']
+  },
+  server: {
+    headers: {
+      'Content-Type': 'application/javascript'
+    }
+  }
 });
