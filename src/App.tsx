@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import Bio from './pages/Bio';
 import Store from './pages/Store';
@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-white">
-        <Navbar />
+        <Navigation />
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
