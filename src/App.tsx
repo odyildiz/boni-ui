@@ -18,7 +18,7 @@ function App() {
       <Router>
         <div className="min-h-screen bg-white">
           <Navigation />
-          <main>
+          <main className="main-content">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/bio" element={<Bio />} />
