@@ -30,20 +30,23 @@ const products = [
 
 const Store = () => {
   return (
-    <div className="pt-24 px-4 max-w-7xl mx-auto">
-      <h1 className="text-4xl font-light mb-8">Store</h1>
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div className="pt-24 px-4">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {products.map((product) => (
-          <Link to={`/store/${product.id}`} key={product.id} className="group">
-            <div className="bg-gray-100 aspect-square mb-4">
+          <Link 
+            key={product.id} 
+            to={`/store/${product.id}`}
+            className="group"
+          >
+            <div className="bg-gray-100 aspect-square mb-2">
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-full object-cover group-hover:opacity-90 transition-opacity"
+                className="w-full h-full object-cover"
               />
             </div>
-            <h3 className="font-medium">{product.name}</h3>
-            <p className="text-gray-600">${product.price}</p>
+            <h3 className="font-light group-hover:text-gray-600">{product.name}</h3>
+            <p className="text-gray-500">${product.price}</p>
           </Link>
         ))}
       </div>

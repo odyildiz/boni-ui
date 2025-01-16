@@ -1,26 +1,31 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 
 const products = {
-  1: {
+  '1': {
+    id: 1,
     name: "Urban Shadows T-Shirt",
     price: 29.99,
     image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab",
     description: "100% organic cotton t-shirt featuring our popular Urban Shadows photograph."
   },
-  2: {
+  '2': {
+    id: 2,
     name: "City Lights T-Shirt",
     price: 29.99,
     image: "https://images.unsplash.com/photo-1503342394128-c104d54dba01",
     description: "Premium quality t-shirt with our iconic City Lights print."
   },
-  3: {
+  '3': {
+    id: 3,
     name: "Autumn Streets Postcard Set",
     price: 12.99,
     image: "https://images.unsplash.com/photo-1477414348463-c0eb7f1359b6",
     description: "Set of 5 postcards featuring autumn street photography."
   },
-  4: {
+  '4': {
+    id: 4,
     name: "Winter Tales Postcard Set",
     price: 12.99,
     image: "https://images.unsplash.com/photo-1418985991508-e47386d96a71",
@@ -31,8 +36,18 @@ const products = {
 const ProductDetail = () => {
   const { productId } = useParams();
   const product = products[productId];
+  const { addToCart } = useCart();
 
   if (!product) return <div>Product not found</div>;
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image
+    });
+  };
 
   return (
     <div className="pt-24 px-4 max-w-7xl mx-auto">
@@ -48,7 +63,10 @@ const ProductDetail = () => {
           <h1 className="text-3xl font-light mb-4">{product.name}</h1>
           <p className="text-xl mb-4">${product.price}</p>
           <p className="mb-8">{product.description}</p>
-          <button className="bg-black text-white px-8 py-3 hover:bg-gray-800">
+          <button
+            onClick={handleAddToCart}
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          >
             Add to Cart
           </button>
         </div>
