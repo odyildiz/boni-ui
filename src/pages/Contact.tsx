@@ -46,24 +46,25 @@ const Contact = () => {
             <div className="space-y-4">
               <p className="flex items-center">
                 <MapPin className="w-5 h-5 mr-2" />
-                123 Art Street, Creative District
+                Rasimpaşa, Duatepe Sk. 43/a, 34716 Kadıköy/İstanbul
               </p>
               <p className="flex items-center">
                 <Phone className="w-5 h-5 mr-2" />
-                +1 (555) 123-4567
+                0 (536) 568 92 24
               </p>
+              {/*
               <p className="flex items-center">
                 <Mail className="w-5 h-5 mr-2" />
                 hello@photostudio.com
               </p>
+              */}
             </div>
           </div>
           <div>
             <h2 className="text-2xl font-light mb-4">Hours</h2>
             <div className="space-y-2">
-              <p>Monday - Friday: 9am - 6pm</p>
-              <p>Saturday: 10am - 4pm</p>
-              <p>Sunday: Closed</p>
+                <p>Monday: Closed</p>
+                <p>Other Days: 11am - 10pm</p>
             </div>
           </div>
         </div>

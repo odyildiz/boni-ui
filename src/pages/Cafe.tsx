@@ -19,7 +19,7 @@ const menu = {
 const Cafe = () => {
   return (
     <div className="pt-24 px-4 max-w-4xl mx-auto">
-      <h1 className="text-4xl font-light mb-8">Studio Cafe</h1>
+      <h1 className="text-4xl font-light mb-8">Boni Cafe & Studio</h1>
       <div className="grid md:grid-cols-2 gap-12">
         <div>
           <img
