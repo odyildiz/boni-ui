@@ -11,8 +11,7 @@ export default defineConfig({
     extensions: ['.js', '.ts', '.jsx', '.tsx']
   },
   server: {
-    headers: {
-      'Content-Type': 'application/javascript'
-    }
+    port: 3000,
+    open: true
   }
 });
