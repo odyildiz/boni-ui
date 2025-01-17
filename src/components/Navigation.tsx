@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Instagram } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -11,8 +11,13 @@ import '../styles/Navigation.css';
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { items } = useCart();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const location = useLocation();
   const itemCount = items.reduce((total, item) => total + item.quantity, 0);
+
+  const getLocalizedPath = (path: string) => {
+    return language === 'en' ? `/en${path}` : path;
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -21,7 +26,7 @@ const Navigation = () => {
   return (
     <nav className="navigation">
       <div className="nav-brand">
-        <Link to="/">Boni Cafe & Studio</Link>
+        <Link to={getLocalizedPath('/')}>Boni Cafe & Studio</Link>
       </div>
       
       <button className="hamburger" onClick={toggleMenu}>
@@ -31,13 +36,13 @@ const Navigation = () => {
       </button>
 
       <ul className={`nav-links ${isOpen ? 'active' : ''}`}>
-        <li><Link to="/" onClick={() => setIsOpen(false)}>{t('nav.home')}</Link></li>
-        <li><Link to="/cafe" onClick={() => setIsOpen(false)}>{t('nav.cafe')}</Link></li>
-        <li><Link to="/store" onClick={() => setIsOpen(false)}>{t('nav.store')}</Link></li>
-        <li><Link to="/bio" onClick={() => setIsOpen(false)}>{t('nav.bio')}</Link></li>
-        <li><Link to="/contact" onClick={() => setIsOpen(false)}>{t('nav.contact')}</Link></li>
+        <li><Link to={getLocalizedPath('/')} onClick={() => setIsOpen(false)}>{t('nav.home')}</Link></li>
+        <li><Link to={getLocalizedPath('/cafe')} onClick={() => setIsOpen(false)}>{t('nav.cafe')}</Link></li>
+        <li><Link to={getLocalizedPath('/store')} onClick={() => setIsOpen(false)}>{t('nav.store')}</Link></li>
+        <li><Link to={getLocalizedPath('/bio')} onClick={() => setIsOpen(false)}>{t('nav.bio')}</Link></li>
+        <li><Link to={getLocalizedPath('/contact')} onClick={() => setIsOpen(false)}>{t('nav.contact')}</Link></li>
         <li className="cart-link">
-          <Link to="/cart" onClick={() => setIsOpen(false)}>
+          <Link to={getLocalizedPath('/cart')} onClick={() => setIsOpen(false)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="cart-icon"

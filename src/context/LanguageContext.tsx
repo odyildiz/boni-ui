@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 type Language = 'en' | 'tr';
 
@@ -206,11 +207,35 @@ export const translations = {
 };
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Initialize language based on URL
   const [language, setLanguage] = useState<Language>(() => {
-    return (localStorage.getItem('language') as Language) || 'en';
+    const pathSegments = location.pathname.split('/');
+    if (pathSegments[1] === 'en') {
+      return 'en';
+    }
+    return 'tr';
   });
 
   const handleSetLanguage = (lang: Language) => {
+    const pathSegments = location.pathname.split('/');
+    
+    if (lang === 'en') {
+      // Add 'en' prefix for English
+      if (pathSegments[1] !== 'en') {
+        const newPath = `/en${location.pathname}`;
+        navigate(newPath);
+      }
+    } else {
+      // Remove 'en' prefix for Turkish
+      if (pathSegments[1] === 'en') {
+        const newPath = location.pathname.replace('/en', '');
+        navigate(newPath);
+      }
+    }
+    
     setLanguage(lang);
     localStorage.setItem('language', lang);
   };

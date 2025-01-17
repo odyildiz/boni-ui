@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import Bio from './pages/Bio';
@@ -15,13 +15,14 @@ import { LanguageProvider } from './context/LanguageContext';
 
 function App() {
   return (
-    <LanguageProvider>
-      <CartProvider>
-        <Router>
+    <Router>
+      <LanguageProvider>
+        <CartProvider>
           <div className="min-h-screen bg-white">
             <Navigation />
             <main className="main-content">
               <Routes>
+                {/* Turkish routes (default) */}
                 <Route path="/" element={<Home />} />
                 <Route path="/bio" element={<Bio />} />
                 <Route path="/store" element={<Store />} />
@@ -31,12 +32,26 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/payment" element={<Payment />} />
+
+                {/* English routes */}
+                <Route path="/en" element={<Home />} />
+                <Route path="/en/bio" element={<Bio />} />
+                <Route path="/en/store" element={<Store />} />
+                <Route path="/en/store/:productId" element={<ProductDetail />} />
+                <Route path="/en/gallery" element={<Gallery />} />
+                <Route path="/en/cafe" element={<Cafe />} />
+                <Route path="/en/contact" element={<Contact />} />
+                <Route path="/en/cart" element={<Cart />} />
+                <Route path="/en/payment" element={<Payment />} />
+
+                {/* Catch all redirect */}
+                <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </main>
           </div>
-        </Router>
-      </CartProvider>
-    </LanguageProvider>
+        </CartProvider>
+      </LanguageProvider>
+    </Router>
   );
 }
 
