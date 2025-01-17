@@ -1,9 +1,11 @@
 import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 
 export function Cart() {
   const { items, removeFromCart, getTotalPrice } = useCart();
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   return (
     <div className="container mx-auto p-4">
@@ -40,7 +42,7 @@ export function Cart() {
               onClick={() => navigate('/payment')}
               className="mt-4 bg-blue-500 text-white px-6 py-2 rounded"
             >
-              Proceed to Payment
+              {t('cart.checkout')}
             </button>
           </div>
         </>

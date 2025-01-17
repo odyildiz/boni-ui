@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useLanguage } from '../context/LanguageContext';
 
 const products = {
   '1': {
@@ -37,6 +38,7 @@ const ProductDetail = () => {
   const { productId } = useParams();
   const product = products[productId];
   const { addToCart } = useCart();
+  const { t } = useLanguage();
 
   if (!product) return <div>Product not found</div>;
 
@@ -67,7 +69,7 @@ const ProductDetail = () => {
             onClick={handleAddToCart}
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
           >
-            Add to Cart
+            {t('product.addToCart')}
           </button>
         </div>
       </div>

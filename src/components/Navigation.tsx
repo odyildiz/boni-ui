@@ -4,11 +4,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useLanguage } from '../context/LanguageContext';
+import LanguageSwitcher from './LanguageSwitcher';
 import '../styles/Navigation.css';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { items } = useCart();
+  const { t } = useLanguage();
   const itemCount = items.reduce((total, item) => total + item.quantity, 0);
 
   const toggleMenu = () => {
@@ -28,11 +31,11 @@ const Navigation = () => {
       </button>
 
       <ul className={`nav-links ${isOpen ? 'active' : ''}`}>
-        <li><Link to="/" onClick={() => setIsOpen(false)}>Home</Link></li>
-        <li><Link to="/cafe" onClick={() => setIsOpen(false)}>Cafe</Link></li>
-        <li><Link to="/store" onClick={() => setIsOpen(false)}>Store</Link></li>
-        <li><Link to="/bio" onClick={() => setIsOpen(false)}>Bio</Link></li>
-        <li><Link to="/contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
+        <li><Link to="/" onClick={() => setIsOpen(false)}>{t('nav.home')}</Link></li>
+        <li><Link to="/cafe" onClick={() => setIsOpen(false)}>{t('nav.cafe')}</Link></li>
+        <li><Link to="/store" onClick={() => setIsOpen(false)}>{t('nav.store')}</Link></li>
+        <li><Link to="/bio" onClick={() => setIsOpen(false)}>{t('nav.bio')}</Link></li>
+        <li><Link to="/contact" onClick={() => setIsOpen(false)}>{t('nav.contact')}</Link></li>
         <li className="cart-link">
           <Link to="/cart" onClick={() => setIsOpen(false)}>
             <svg
@@ -61,6 +64,9 @@ const Navigation = () => {
           >
             <Instagram className="instagram-icon" />
           </a>
+        </li>
+        <li className="language-switcher-container">
+          <LanguageSwitcher />
         </li>
       </ul>
     </nav>

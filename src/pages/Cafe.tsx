@@ -1,25 +1,36 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 const menu = {
   drinks: [
-    { name: "Espresso", price: 3.50 },
-    { name: "Cappuccino", price: 4.50 },
-    { name: "Latte", price: 4.50 },
-    { name: "Americano", price: 3.50 },
-    { name: "Hot Chocolate", price: 4.00 }
+    { nameKey: 'cafe.menu.items.espresso', price: 3.50 },
+    { nameKey: 'cafe.menu.items.cappuccino', price: 4.50 },
+    { nameKey: 'cafe.menu.items.latte', price: 4.50 },
+    { nameKey: 'cafe.menu.items.americano', price: 3.50 },
+    { nameKey: 'cafe.menu.items.hotChocolate', price: 4.00 }
   ],
   food: [
-    { name: "Croissant", price: 3.50 },
-    { name: "Chocolate Muffin", price: 3.50 },
-    { name: "Avocado Toast", price: 8.50 },
-    { name: "Granola Bowl", price: 7.50 }
+    { nameKey: 'cafe.menu.items.croissant', price: 3.50 },
+    { nameKey: 'cafe.menu.items.chocolateMuffin', price: 3.50 },
+    { nameKey: 'cafe.menu.items.avocadoToast', price: 8.50 },
+    { nameKey: 'cafe.menu.items.granolaBowl', price: 7.50 }
   ]
 };
 
 const Cafe = () => {
+  const { t, language } = useLanguage();
+
+  // Convert price based on language
+  const getPrice = (price: number) => {
+    if (language === 'tr') {
+      return (price * 30).toFixed(2); // Example conversion rate
+    }
+    return price.toFixed(2);
+  };
+
   return (
     <div className="pt-24 px-4 max-w-4xl mx-auto">
-      <h1 className="text-4xl font-light mb-8">Boni Cafe & Studio</h1>
+      <h1 className="text-4xl font-light mb-8">{t('cafe.title')}</h1>
       <div className="grid md:grid-cols-2 gap-12">
         <div>
           <img
@@ -28,26 +39,25 @@ const Cafe = () => {
             className="w-full h-96 object-cover mb-8"
           />
           <p className="text-gray-600">
-            Our studio cafe is a peaceful space where art meets coffee. Enjoy carefully crafted beverages
-            while surrounded by selected prints from our collection.
+            {t('cafe.description')}
           </p>
         </div>
         <div>
           <div className="mb-8">
-            <h2 className="text-2xl font-light mb-4">Drinks</h2>
+            <h2 className="text-2xl font-light mb-4">{t('cafe.menu.drinks')}</h2>
             {menu.drinks.map((item, index) => (
               <div key={index} className="flex justify-between mb-2">
-                <span>{item.name}</span>
-                <span>${item.price.toFixed(2)}</span>
+                <span>{t(item.nameKey)}</span>
+                <span>{t('cafe.menu.currency')}{getPrice(item.price)}</span>
               </div>
             ))}
           </div>
           <div>
-            <h2 className="text-2xl font-light mb-4">Food</h2>
+            <h2 className="text-2xl font-light mb-4">{t('cafe.menu.food')}</h2>
             {menu.food.map((item, index) => (
               <div key={index} className="flex justify-between mb-2">
-                <span>{item.name}</span>
-                <span>${item.price.toFixed(2)}</span>
+                <span>{t(item.nameKey)}</span>
+                <span>{t('cafe.menu.currency')}{getPrice(item.price)}</span>
               </div>
             ))}
           </div>
@@ -55,6 +65,6 @@ const Cafe = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Cafe;
