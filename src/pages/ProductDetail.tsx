@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
+import CartNotification from '../components/CartNotification';
 
 const products = {
   '1': {
@@ -39,6 +40,10 @@ const ProductDetail = () => {
   const product = products[productId];
   const { addToCart } = useCart();
   const { getLocalizedText } = useLanguage();
+  const [notification, setNotification] = useState<{ visible: boolean; productName: string }>({
+    visible: false,
+    productName: ''
+  });
 
   if (!product) return <div>Product not found</div>;
 
@@ -49,6 +54,10 @@ const ProductDetail = () => {
       price: product.price,
       image: product.image
     });
+    setNotification({ visible: true, productName: product.name });
+    setTimeout(() => {
+      setNotification({ visible: false, productName: '' });
+    }, 5000);
   };
 
   return (
@@ -67,12 +76,16 @@ const ProductDetail = () => {
           <p className="mb-8">{product.description}</p>
           <button
             onClick={handleAddToCart}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            className="bg-[#C8B6A6] text-white px-4 py-2 rounded hover:bg-[#A4907C] transition-colors"
           >
             {getLocalizedText('product.addToCart')}
           </button>
         </div>
       </div>
+      <CartNotification 
+        isVisible={notification.visible} 
+        productName={notification.productName}
+      />
     </div>
   );
 }

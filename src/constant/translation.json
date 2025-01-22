@@ -50,6 +50,9 @@
       "bio.mission": "Our Mission",
       "bio.vision": "Our Vision",
       "bio.team": "Our Team",
+      "bio.p1": "With over 15 years of experience in fine art photography, I've dedicated my life to capturing the extraordinary in the ordinary. My work focuses on finding beauty in unexpected places and moments that might otherwise go unnoticed.",
+      "bio.p2": "My journey began in the darkroom of my local art school, where I fell in love with the process of creating images. Today, I combine traditional techniques with modern technology to create unique perspectives on the world around us.",
+      "bio.p3": "When I'm not behind the camera, you can find me teaching photography workshops or enjoying a cup of coffee at my studio cafe, where I love to connect with fellow artists and art enthusiasts.",
       
       
       "contact.title": "Contact",
@@ -149,6 +152,10 @@
       "bio.mission": "Misyonumuz",
       "bio.vision": "Vizyonumuz",
       "bio.team": "Ekibimiz",
+      "bio.p1": "15 yılı aşkın bir süredir güzel sanatlar fotoğrafçılığı alanında çalışarak, hayatımı sıradanın içindeki olağanüstüyü yakalamaya adadım. Çalışmalarım, genellikle fark edilmeyen anlarda ve beklenmedik yerlerde güzellik bulmaya odaklanıyor.",
+      "bio.p2": "Yolculuğum, yerel sanat okulumun karanlık odasında, görüntü oluşturma sürecine aşık olduğumda başladı. Bugün, geleneksel teknikleri modern teknolojiyle birleştirerek dünyaya dair benzersiz perspektifler yaratıyorum.",
+      "bio.p3": "Kameranın arkasında olmadığım zamanlarda, ya fotoğrafçılık atölyeleri düzenliyor ya da stüdyo kafemde bir fincan kahve eşliğinde sanatçılar ve sanat tutkunlarıyla bağlantı kurmaktan keyif alıyorum.",
+
       
       
       "contact.title": "İletişim",

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
+import CartNotification from '../components/CartNotification';
 
 const products = [
   {
@@ -33,6 +34,18 @@ const products = [
 const Store = () => {
   const { getLocalizedPath } = useLanguage();
   const { addToCart } = useCart();
+  const [notification, setNotification] = useState<{ visible: boolean; productName: string }>({
+    visible: false,
+    productName: ''
+  });
+
+  const handleAddToCart = (product: typeof products[0]) => {
+    addToCart(product);
+    setNotification({ visible: true, productName: product.name });
+    setTimeout(() => {
+      setNotification({ visible: false, productName: '' });
+    }, 5000);
+  };
 
   return (
     <div className="pt-24 px-4">
@@ -54,10 +67,7 @@ const Store = () => {
               <p className="text-gray-500">${product.price}</p>
             </Link>
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                addToCart(product);
-              }}
+              onClick={() => handleAddToCart(product)}
               className="mt-2 w-full bg-[#C8B6A6] text-white py-2 px-4 rounded hover:bg-[#A4907C] transition-colors"
             >
               Add to Cart
@@ -65,6 +75,10 @@ const Store = () => {
           </div>
         ))}
       </div>
+      <CartNotification 
+        isVisible={notification.visible} 
+        productName={notification.productName}
+      />
     </div>
   );
 }

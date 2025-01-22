@@ -14,18 +14,13 @@ const Bio = () => {
         />
         <div>
           <p className="mb-4">
-            With over 15 years of experience in fine art photography, I've dedicated my life to capturing
-            the extraordinary in the ordinary. My work focuses on finding beauty in unexpected places
-            and moments that might otherwise go unnoticed.
+            {getLocalizedText('bio.p1')}  
           </p>
           <p className="mb-4">
-            My journey began in the darkroom of my local art school, where I fell in love with the
-            process of creating images. Today, I combine traditional techniques with modern technology
-            to create unique perspectives on the world around us.
+            {getLocalizedText('bio.p2')}  
           </p>
           <p>
-            When I'm not behind the camera, you can find me teaching photography workshops or enjoying
-            a cup of coffee at my studio cafe, where I love to connect with fellow artists and art enthusiasts.
+            {getLocalizedText('bio.p3')}  
           </p>
         </div>
       </div>
