@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { useCart } from '../context/CartContext';
 
 const products = [
   {
@@ -31,25 +32,37 @@ const products = [
 
 const Store = () => {
   const { getLocalizedPath } = useLanguage();
+  const { addToCart } = useCart();
+
   return (
     <div className="pt-24 px-4">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {products.map((product) => (
-          <Link 
-            key={product.id} 
-            to={getLocalizedPath(`/store/${product.id}`)}
-            className="group"
-          >
-            <div className="bg-gray-100 aspect-square mb-2">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <h3 className="font-light group-hover:text-gray-600">{product.name}</h3>
-            <p className="text-gray-500">${product.price}</p>
-          </Link>
+          <div key={product.id} className="group">
+            <Link 
+              to={getLocalizedPath(`/store/${product.id}`)}
+              className="block"
+            >
+              <div className="bg-gray-100 aspect-square mb-2">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="font-light group-hover:text-gray-600">{product.name}</h3>
+              <p className="text-gray-500">${product.price}</p>
+            </Link>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                addToCart(product);
+              }}
+              className="mt-2 w-full bg-[#C8B6A6] text-white py-2 px-4 rounded hover:bg-[#A4907C] transition-colors"
+            >
+              Add to Cart
+            </button>
+          </div>
         ))}
       </div>
     </div>
