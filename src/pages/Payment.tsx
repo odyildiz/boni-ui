@@ -11,7 +11,7 @@ interface PaymentFormData {
   cardholderName: string;
 }
 
-export function Payment() {
+function Payment() {
   const navigate = useNavigate();
   const { getLocalizedText, getLocalizedPath } = useLanguage();
   const { items, getTotalPrice } = useCart();
@@ -175,3 +175,5 @@ export function Payment() {
     </div>
   );
 }
+
+export default Payment;

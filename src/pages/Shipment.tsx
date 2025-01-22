@@ -36,7 +36,7 @@ const initialFormData: ShipmentForm = {
   addressName: ''
 };
 
-export function Shipment() {
+function Shipment() {
   const navigate = useNavigate();
   const { getLocalizedText, getLocalizedPath } = useLanguage();
   const { getTotalPrice } = useCart();
@@ -421,3 +421,5 @@ export function Shipment() {
     </div>
   );
 }
+
+export default Shipment;

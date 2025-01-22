@@ -2,7 +2,7 @@ import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
-export function Cart() {
+function Cart() {
   const { items, removeFromCart, updateQuantity, getTotalPrice, emptyCart } = useCart();
   const navigate = useNavigate();
   const { getLocalizedText, getLocalizedPath } = useLanguage();
@@ -83,3 +83,5 @@ export function Cart() {
     </div>
   );
 }
+
+export default Cart;
