@@ -12,6 +12,7 @@ interface CartContextType {
   items: CartItem[];
   addToCart: (item: Omit<CartItem, 'quantity'>) => void;
   removeFromCart: (id: number) => void;
+  updateQuantity: (id: number, delta: number) => void;
   getTotalPrice: () => number;
 }
 
@@ -45,12 +46,25 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setItems(currentItems => currentItems.filter(item => item.id !== id));
   };
 
+  const updateQuantity = (id: number, delta: number) => {
+    setItems(currentItems => {
+      const updatedItems = currentItems.map(item => {
+        if (item.id === id) {
+          const newQuantity = item.quantity + delta;
+          return newQuantity > 0 ? { ...item, quantity: newQuantity } : null;
+        }
+        return item;
+      }).filter((item): item is CartItem => item !== null);
+      return updatedItems;
+    });
+  };
+
   const getTotalPrice = () => {
     return items.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
   return (
-    <CartContext.Provider value={{ items, addToCart, removeFromCart, getTotalPrice }}>
+    <CartContext.Provider value={{ items, addToCart, removeFromCart, updateQuantity, getTotalPrice }}>
       {children}
     </CartContext.Provider>
   );
