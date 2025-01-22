@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import translation from '../constant/translation.json';
 
 type Language = 'en' | 'tr';
@@ -8,55 +8,64 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   getLocalizedText: (key: string) => string;
-  getLocalizedPath: (key: string) => string;
+  getLocalizedPath: (path: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const navigate = useNavigate();
   const location = useLocation();
+  const navigate = useNavigate();
 
-  // Initialize language based on URL
-  const [language, setLanguage] = useState<Language>(() => {
+  // Determine initial language
+  const getInitialLanguage = (): Language => {
     const pathSegments = location.pathname.split('/');
-    if (pathSegments[1] === 'en') {
-      return 'en';
-    }
+    const storedLanguage = localStorage.getItem('language') as Language;
+    
+    if (pathSegments[1] === 'en') return 'en';
+    if (storedLanguage) return storedLanguage;
     return 'tr';
-  });
+  };
 
-  const handleSetLanguage = (lang: Language) => {
+  const [language, setLanguageState] = useState<Language>(getInitialLanguage());
+
+  // Effect to update URL when language changes
+  useEffect(() => {
     const pathSegments = location.pathname.split('/');
+    const currentPath = pathSegments.slice(1).join('/');
     
-    if (lang === 'en') {
-      // Add 'en' prefix for English
-      if (pathSegments[1] !== 'en') {
-        const newPath = `/en${location.pathname}`;
-        navigate(newPath);
-      }
-    } else {
-      // Remove 'en' prefix for Turkish
-      if (pathSegments[1] === 'en') {
-        const newPath = location.pathname.replace('/en', '');
-        navigate(newPath);
-      }
+    const newPath = language === 'en' 
+      ? (pathSegments[1] !== 'en' ? `/en/${currentPath}` : location.pathname)
+      : currentPath.replace(/^en\//, '');
+
+    if (newPath !== location.pathname) {
+      navigate(newPath, { replace: true });
     }
-    
-    setLanguage(lang);
-    localStorage.setItem('language', lang);
+
+    localStorage.setItem('language', language);
+  }, [language, location.pathname, navigate]);
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
   };
 
   const getLocalizedText = (key: string): string => {
     return translation[language][key] || key;
   };
 
-  const getLocalizedPath = (path: string) => {
+  const getLocalizedPath = (path: string): string => {
     return language === 'en' ? `/en${path}` : path;
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, getLocalizedText, getLocalizedPath }}>
+    <LanguageContext.Provider 
+      value={{ 
+        language, 
+        setLanguage, 
+        getLocalizedText, 
+        getLocalizedPath 
+      }}
+    >
       {children}
     </LanguageContext.Provider>
   );
@@ -64,8 +73,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;
-}; 
+};
