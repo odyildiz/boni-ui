@@ -3,13 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
 export function Cart() {
-  const { items, removeFromCart, updateQuantity, getTotalPrice } = useCart();
+  const { items, removeFromCart, updateQuantity, getTotalPrice, emptyCart } = useCart();
   const navigate = useNavigate();
   const { getLocalizedText, getLocalizedPath } = useLanguage();
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">{getLocalizedText('cart.title')}</h1>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-2xl font-bold">{getLocalizedText('cart.title')}</h1>
+      </div>
       
       {items.length === 0 ? (
         <p>{getLocalizedText('cart.empty')}</p>
@@ -58,15 +60,23 @@ export function Cart() {
           </div>
 
           <div className="mt-8 border-t pt-4">
-            <p className="text-xl font-bold">
+            <p className="text-xl font-bold mb-4">
               {getLocalizedText('cart.total')}: ${getTotalPrice().toFixed(2)}
             </p>
-            <button
-              onClick={() => navigate(getLocalizedPath('/shipment'))}
-              className="mt-4 bg-[#C8B6A6] text-white px-6 py-2 rounded hover:bg-[#A4907C] transition-colors"
-            >
-              {getLocalizedText('cart.proceedToShipment')}
-            </button>
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => navigate(getLocalizedPath('/shipment'))}
+                className="bg-[#C8B6A6] text-white px-8 py-2 rounded hover:bg-[#A4907C] transition-colors"
+              >
+                {getLocalizedText('cart.proceedToShipment')}
+              </button>
+              <button
+                onClick={emptyCart}
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
+              >
+                {getLocalizedText('cart.emptyCart')}
+              </button>
+            </div>
           </div>
         </>
       )}

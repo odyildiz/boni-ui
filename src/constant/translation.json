@@ -78,6 +78,7 @@
       "cart.quantity": "Quantity",
       "cart.update": "Update Cart",
       "cart.proceedToShipment": "Proceed to Shipment",
+      "cart.emptyCart": "Empty Cart",
 
       "shipment.title": "Shipping Information",
       "shipment.fullName": "Full Name",
@@ -196,6 +197,7 @@
       "cart.quantity": "Adet",
       "cart.update": "Sepeti Güncelle",
       "cart.proceedToShipment": "Kargo Bilgilerine İlerle",
+      "cart.emptyCart": "Sepeti Boşalt",
 
       "shipment.title": "Kargo Bilgileri",
       "shipment.fullName": "Ad Soyad",
