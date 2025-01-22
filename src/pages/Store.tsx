@@ -34,16 +34,30 @@ const products = [
 const Store = () => {
   const { getLocalizedPath, getLocalizedText } = useLanguage();
   const { addToCart } = useCart();
-  const [notification, setNotification] = useState<{ visible: boolean; productName: string }>({
+  const [quantities, setQuantities] = useState<{ [key: number]: number }>(
+    products.reduce((acc, product) => ({ ...acc, [product.id]: 1 }), {})
+  );
+  const [notification, setNotification] = useState<{ visible: boolean; productName: string; quantity: number }>({
     visible: false,
-    productName: ''
+    productName: '',
+    quantity: 0
   });
 
+  const handleQuantityChange = (productId: number, delta: number) => {
+    setQuantities(prev => ({
+      ...prev,
+      [productId]: Math.max(1, prev[productId] + delta)
+    }));
+  };
+
   const handleAddToCart = (product: typeof products[0]) => {
-    addToCart(product);
-    setNotification({ visible: true, productName: product.name });
+    const quantity = quantities[product.id];
+    for (let i = 0; i < quantity; i++) {
+      addToCart(product);
+    }
+    setNotification({ visible: true, productName: product.name, quantity });
     setTimeout(() => {
-      setNotification({ visible: false, productName: '' });
+      setNotification({ visible: false, productName: '', quantity: 0 });
     }, 5000);
   };
 
@@ -66,18 +80,38 @@ const Store = () => {
               <h3 className="font-light group-hover:text-gray-600">{product.name}</h3>
               <p className="text-gray-500">${product.price}</p>
             </Link>
-            <button
-              onClick={() => handleAddToCart(product)}
-              className="mt-2 w-full bg-[#C8B6A6] text-white py-2 px-4 rounded hover:bg-[#A4907C] transition-colors"
-            >
-              {getLocalizedText('store.addToCart')}  
-            </button>
+            <div className="flex items-center gap-2 mt-2">
+              <div className="flex items-center border border-[#C8B6A6] rounded">
+                <button
+                  onClick={() => handleQuantityChange(product.id, -1)}
+                  className="px-2 py-1 text-[#C8B6A6] hover:bg-gray-100 transition-colors"
+                >
+                  -
+                </button>
+                <span className="px-3 py-1 text-gray-700 border-x border-[#C8B6A6]">
+                  {quantities[product.id]}
+                </span>
+                <button
+                  onClick={() => handleQuantityChange(product.id, 1)}
+                  className="px-2 py-1 text-[#C8B6A6] hover:bg-gray-100 transition-colors"
+                >
+                  +
+                </button>
+              </div>
+              <button
+                onClick={() => handleAddToCart(product)}
+                className="flex-1 bg-[#C8B6A6] text-white py-2 px-4 rounded hover:bg-[#A4907C] transition-colors"
+              >
+                {getLocalizedText('store.addToCart')}  
+              </button>
+            </div>
           </div>
         ))}
       </div>
       <CartNotification 
         isVisible={notification.visible} 
         productName={notification.productName}
+        quantity={notification.quantity}
       />
     </div>
   );

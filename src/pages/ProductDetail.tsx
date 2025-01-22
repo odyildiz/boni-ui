@@ -40,23 +40,31 @@ const ProductDetail = () => {
   const product = products[productId];
   const { addToCart } = useCart();
   const { getLocalizedText } = useLanguage();
-  const [notification, setNotification] = useState<{ visible: boolean; productName: string }>({
+  const [quantity, setQuantity] = useState(1);
+  const [notification, setNotification] = useState<{ visible: boolean; productName: string; quantity: number }>({
     visible: false,
-    productName: ''
+    productName: '',
+    quantity: 0
   });
 
   if (!product) return <div>Product not found</div>;
 
+  const handleQuantityChange = (delta: number) => {
+    setQuantity(prev => Math.max(1, prev + delta));
+  };
+
   const handleAddToCart = () => {
-    addToCart({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image
-    });
-    setNotification({ visible: true, productName: product.name });
+    for (let i = 0; i < quantity; i++) {
+      addToCart({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image
+      });
+    }
+    setNotification({ visible: true, productName: product.name, quantity });
     setTimeout(() => {
-      setNotification({ visible: false, productName: '' });
+      setNotification({ visible: false, productName: '', quantity: 0 });
     }, 5000);
   };
 
@@ -74,6 +82,21 @@ const ProductDetail = () => {
           <h1 className="text-3xl font-light mb-4">{product.name}</h1>
           <p className="text-xl mb-4">${product.price}</p>
           <p className="mb-8">{product.description}</p>
+          <div className="flex items-center gap-4 mb-4">
+            <button
+              onClick={() => handleQuantityChange(-1)}
+              className="bg-[#C8B6A6] text-white w-8 h-8 rounded flex items-center justify-center hover:bg-[#A4907C] transition-colors"
+            >
+              -
+            </button>
+            <span className="text-lg">{quantity}</span>
+            <button
+              onClick={() => handleQuantityChange(1)}
+              className="bg-[#C8B6A6] text-white w-8 h-8 rounded flex items-center justify-center hover:bg-[#A4907C] transition-colors"
+            >
+              +
+            </button>
+          </div>
           <button
             onClick={handleAddToCart}
             className="bg-[#C8B6A6] text-white px-4 py-2 rounded hover:bg-[#A4907C] transition-colors"
@@ -85,6 +108,7 @@ const ProductDetail = () => {
       <CartNotification 
         isVisible={notification.visible} 
         productName={notification.productName}
+        quantity={notification.quantity}
       />
     </div>
   );
