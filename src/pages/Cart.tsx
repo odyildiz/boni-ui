@@ -62,10 +62,10 @@ export function Cart() {
               {getLocalizedText('cart.total')}: ${getTotalPrice().toFixed(2)}
             </p>
             <button
-              onClick={() => navigate(getLocalizedPath('/payment'))}
+              onClick={() => navigate(getLocalizedPath('/shipment'))}
               className="mt-4 bg-[#C8B6A6] text-white px-6 py-2 rounded hover:bg-[#A4907C] transition-colors"
             >
-              {getLocalizedText('cart.checkout')}
+              {getLocalizedText('cart.proceedToShipment')}
             </button>
           </div>
         </>

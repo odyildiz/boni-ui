@@ -8,7 +8,7 @@
       "nav.contact": "Contact",
       "nav.cart": "Cart",
       
-    
+      
       "home.welcome": "Capturing Moments",
       "home.description": "Fine Art Photography",
       "home.featuredImageAlt": "Featured photograph",
@@ -77,7 +77,18 @@
       "cart.remove": "Remove",
       "cart.quantity": "Quantity",
       "cart.update": "Update Cart",
+      "cart.proceedToShipment": "Proceed to Shipment",
 
+      "shipment.title": "Shipping Information",
+      "shipment.fullName": "Full Name",
+      "shipment.address": "Address",
+      "shipment.city": "City",
+      "shipment.country": "Country",
+      "shipment.postalCode": "Postal Code",
+      "shipment.phone": "Phone Number",
+      "shipment.proceedToPayment": "Proceed to Payment",
+      "shipment.billingTitle": "Billing Information",
+      "shipment.sameAsShipping": "Billing address is same as shipping address",
 
       "cartNotification.addedToCart": "added to cart!",
       "cartNotification.viewCart": "View Cart",
@@ -184,6 +195,18 @@
       "cart.remove": "Kaldır",
       "cart.quantity": "Adet",
       "cart.update": "Sepeti Güncelle",
+      "cart.proceedToShipment": "Kargo Bilgilerine İlerle",
+
+      "shipment.title": "Kargo Bilgileri",
+      "shipment.fullName": "Ad Soyad",
+      "shipment.address": "Adres",
+      "shipment.city": "Şehir",
+      "shipment.country": "Ülke",
+      "shipment.postalCode": "Posta Kodu",
+      "shipment.phone": "Telefon Numarası",
+      "shipment.proceedToPayment": "Ödemeye İlerle",
+      "shipment.billingTitle": "Fatura Bilgileri",
+      "shipment.sameAsShipping": "Fatura adresi kargo adresi ile aynı",
 
       "cartNotification.addedToCart": "sepete eklendi!",
       "cartNotification.viewCart": "Sepeti Görüntüle",

@@ -10,6 +10,7 @@ import Contact from './pages/Contact';
 import ProductDetail from './pages/ProductDetail';
 import { CartProvider } from './context/CartContext';
 import { Cart } from './pages/Cart';
+import { Shipment } from './pages/Shipment';
 import { Payment } from './pages/Payment';
 import { LanguageProvider } from './context/LanguageContext';
 
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/cafe" element={<Cafe />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/shipment" element={<Shipment />} />
                 <Route path="/payment" element={<Payment />} />
 
                 {/* English routes */}
@@ -42,6 +44,7 @@ function App() {
                 <Route path="/en/cafe" element={<Cafe />} />
                 <Route path="/en/contact" element={<Contact />} />
                 <Route path="/en/cart" element={<Cart />} />
+                <Route path="/en/shipment" element={<Shipment />} />
                 <Route path="/en/payment" element={<Payment />} />
 
                 {/* Catch all redirect */}
