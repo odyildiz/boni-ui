@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
+import { useOrder } from '../context/OrderContext';
 
 interface AddressForm {
   fullName: string;
@@ -22,6 +23,7 @@ export function Shipment() {
   const navigate = useNavigate();
   const { getLocalizedText, getLocalizedPath } = useLanguage();
   const { getTotalPrice } = useCart();
+  const { setShippingAddress, setBillingAddress } = useOrder();
   const [sameAsShipping, setSameAsShipping] = useState(true);
   const [formData, setFormData] = useState<ShipmentForm>({
     shipping: {
@@ -83,7 +85,10 @@ export function Shipment() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically save the shipping and billing information
+    // Save shipping and billing information
+    setShippingAddress(formData.shipping);
+    setBillingAddress(sameAsShipping ? formData.shipping : formData.billing);
+    // Navigate to payment page
     navigate(getLocalizedPath('/payment'));
   };
 

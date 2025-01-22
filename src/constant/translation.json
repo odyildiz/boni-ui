@@ -97,6 +97,10 @@
       
       "payment.title": "Payment",
       "payment.billingInfo": "Billing Information",
+      "payment.summary": "Order Summary",
+      "payment.cartSummary": "Cart Items",
+      "payment.shippingAddress": "Shipping Address",
+      "payment.billingAddress": "Billing Address",
       "payment.cardNumber": "Card Number",
       "payment.expiryDate": "Expiry Date",
       "payment.expiryDatePlaceHolder": "MM/YY",
@@ -216,6 +220,10 @@
       
       "payment.title": "Ödeme",
       "payment.billingInfo": "Fatura Bilgileri",
+      "payment.summary": "Sipariş Özeti",
+      "payment.cartSummary": "Sepetteki Ürünler",
+      "payment.shippingAddress": "Kargo Adresi",
+      "payment.billingAddress": "Fatura Adresi",
       "payment.cardNumber": "Kart Numarası",
       "payment.expiryDate": "Son Kullanma Tarihi",
       "payment.expiryDatePlaceHolder": "AA/YY",
