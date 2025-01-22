@@ -7,6 +7,7 @@ import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import '../styles/Navigation.css';
+import boniLogo from '../media/boni-logo.jpg';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +23,10 @@ const Navigation = () => {
   return (
     <nav className="navigation">
       <div className="nav-brand">
-        <Link to={getLocalizedPath('/')}>Boni Cafe & Studio</Link>
+        <Link to={getLocalizedPath('/')}>
+          <img src={boniLogo} alt="Boni Cafe & Studio" className="h-8 mr-2" />
+          <span>Boni Cafe & Studio</span>
+        </Link>
       </div>
       
       <button className="hamburger" onClick={toggleMenu}>
