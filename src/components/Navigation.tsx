@@ -11,13 +11,9 @@ import '../styles/Navigation.css';
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { items } = useCart();
-  const { t, language } = useLanguage();
+  const { getLocalizedPath, getLocalizedText, language } = useLanguage();
   const location = useLocation();
   const itemCount = items.reduce((total, item) => total + item.quantity, 0);
-
-  const getLocalizedPath = (path: string) => {
-    return language === 'en' ? `/en${path}` : path;
-  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -36,11 +32,11 @@ const Navigation = () => {
       </button>
 
       <ul className={`nav-links ${isOpen ? 'active' : ''}`}>
-        <li><Link to={getLocalizedPath('/')} onClick={() => setIsOpen(false)}>{t('nav.home')}</Link></li>
-        <li><Link to={getLocalizedPath('/cafe')} onClick={() => setIsOpen(false)}>{t('nav.cafe')}</Link></li>
-        <li><Link to={getLocalizedPath('/store')} onClick={() => setIsOpen(false)}>{t('nav.store')}</Link></li>
-        <li><Link to={getLocalizedPath('/bio')} onClick={() => setIsOpen(false)}>{t('nav.bio')}</Link></li>
-        <li><Link to={getLocalizedPath('/contact')} onClick={() => setIsOpen(false)}>{t('nav.contact')}</Link></li>
+        <li><Link to={getLocalizedPath('/')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.home')}</Link></li>
+        <li><Link to={getLocalizedPath('/cafe')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.cafe')}</Link></li>
+        <li><Link to={getLocalizedPath('/store')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.store')}</Link></li>
+        <li><Link to={getLocalizedPath('/bio')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.bio')}</Link></li>
+        <li><Link to={getLocalizedPath('/contact')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.contact')}</Link></li>
         <li className="cart-link">
           <Link to={getLocalizedPath('/cart')} onClick={() => setIsOpen(false)}>
             <svg

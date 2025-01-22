@@ -18,7 +18,7 @@ const menu = {
 };
 
 const Cafe = () => {
-  const { t, language } = useLanguage();
+  const { getLocalizedText, language } = useLanguage();
 
   // Convert price based on language
   const getPrice = (price: number) => {
@@ -30,7 +30,7 @@ const Cafe = () => {
 
   return (
     <div className="pt-24 px-4 max-w-4xl mx-auto">
-      <h1 className="text-4xl font-light mb-8">{t('cafe.title')}</h1>
+      <h1 className="text-4xl font-light mb-8">{getLocalizedText('cafe.title')}</h1>
       <div className="grid md:grid-cols-2 gap-12">
         <div>
           <img
@@ -39,25 +39,25 @@ const Cafe = () => {
             className="w-full h-96 object-cover mb-8"
           />
           <p className="text-gray-600">
-            {t('cafe.description')}
+            {getLocalizedText('cafe.description')}
           </p>
         </div>
         <div>
           <div className="mb-8">
-            <h2 className="text-2xl font-light mb-4">{t('cafe.menu.drinks')}</h2>
+            <h2 className="text-2xl font-light mb-4">{getLocalizedText('cafe.menu.drinks')}</h2>
             {menu.drinks.map((item, index) => (
               <div key={index} className="flex justify-between mb-2">
-                <span>{t(item.nameKey)}</span>
-                <span>{t('cafe.menu.currency')}{getPrice(item.price)}</span>
+                <span>{getLocalizedText(item.nameKey)}</span>
+                <span>{getLocalizedText('cafe.menu.currency')}{getPrice(item.price)}</span>
               </div>
             ))}
           </div>
           <div>
-            <h2 className="text-2xl font-light mb-4">{t('cafe.menu.food')}</h2>
+            <h2 className="text-2xl font-light mb-4">{getLocalizedText('cafe.menu.food')}</h2>
             {menu.food.map((item, index) => (
               <div key={index} className="flex justify-between mb-2">
-                <span>{t(item.nameKey)}</span>
-                <span>{t('cafe.menu.currency')}{getPrice(item.price)}</span>
+                <span>{getLocalizedText(item.nameKey)}</span>
+                <span>{getLocalizedText('cafe.menu.currency')}{getPrice(item.price)}</span>
               </div>
             ))}
           </div>

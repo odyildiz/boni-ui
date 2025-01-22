@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useCart } from '../context/CartContext';
+import { useLanguage } from '../context/LanguageContext';
 
 interface PaymentFormData {
   cardNumber: string;
@@ -10,6 +11,7 @@ interface PaymentFormData {
 
 export function Payment() {
   const { getTotalPrice } = useCart();
+  const { getLocalizedText } = useLanguage();
   const [formData, setFormData] = useState<PaymentFormData>({
     cardNumber: '',
     expiryDate: '',
@@ -49,7 +51,7 @@ export function Payment() {
       <h1 className="text-2xl font-bold mb-4">Payment Details</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block mb-1">Cardholder Name</label>
+          <label className="block mb-1">{getLocalizedText('payment.nameOnCard')}</label>
           <input
             type="text"
             value={formData.cardholderName}
@@ -59,7 +61,7 @@ export function Payment() {
           />
         </div>
         <div>
-          <label className="block mb-1">Card Number</label>
+          <label className="block mb-1">{getLocalizedText('payment.cardNumber')}</label>
           <input
             type="text"
             value={formData.cardNumber}
@@ -70,10 +72,10 @@ export function Payment() {
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block mb-1">Expiry Date</label>
+            <label className="block mb-1">{getLocalizedText('payment.expiryDate')}</label>
             <input
               type="text"
-              placeholder="MM/YY"
+              placeholder={getLocalizedText('payment.expiryDatePlaceHolder')}
               value={formData.expiryDate}
               onChange={e => setFormData(prev => ({ ...prev, expiryDate: e.target.value }))}
               className="w-full border p-2 rounded"
@@ -81,7 +83,7 @@ export function Payment() {
             />
           </div>
           <div>
-            <label className="block mb-1">CVV</label>
+            <label className="block mb-1">{getLocalizedText('payment.cvv')}</label>
             <input
               type="text"
               value={formData.cvv}
@@ -93,13 +95,13 @@ export function Payment() {
         </div>
         <div className="border-t pt-4">
           <p className="text-xl font-bold mb-4">
-            Total Amount: ${getTotalPrice().toFixed(2)}
+          {getLocalizedText('payment.totalAmount')}: ${getTotalPrice().toFixed(2)}
           </p>
           <button
             type="submit"
             className="w-full bg-green-500 text-white py-2 rounded"
           >
-            Pay Now
+            {getLocalizedText('payment.payNow')}
           </button>
         </div>
       </form>

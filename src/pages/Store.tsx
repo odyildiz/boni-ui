@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 
 const products = [
   {
@@ -29,13 +30,14 @@ const products = [
 ];
 
 const Store = () => {
+  const { getLocalizedPath } = useLanguage();
   return (
     <div className="pt-24 px-4">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {products.map((product) => (
           <Link 
             key={product.id} 
-            to={`/store/${product.id}`}
+            to={getLocalizedPath(`/store/${product.id}`)}
             className="group"
           >
             <div className="bg-gray-100 aspect-square mb-2">

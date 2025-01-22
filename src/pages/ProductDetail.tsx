@@ -38,7 +38,7 @@ const ProductDetail = () => {
   const { productId } = useParams();
   const product = products[productId];
   const { addToCart } = useCart();
-  const { t } = useLanguage();
+  const { getLocalizedText } = useLanguage();
 
   if (!product) return <div>Product not found</div>;
 
@@ -69,7 +69,7 @@ const ProductDetail = () => {
             onClick={handleAddToCart}
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
           >
-            {t('product.addToCart')}
+            {getLocalizedText('product.addToCart')}
           </button>
         </div>
       </div>

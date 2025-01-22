@@ -5,7 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 export function Cart() {
   const { items, removeFromCart, getTotalPrice } = useCart();
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { getLocalizedText, getLocalizedPath } = useLanguage();
 
   return (
     <div className="container mx-auto p-4">
@@ -39,10 +39,10 @@ export function Cart() {
               Total: ${getTotalPrice().toFixed(2)}
             </p>
             <button
-              onClick={() => navigate('/payment')}
+              onClick={() => navigate(getLocalizedPath('/payment'))}
               className="mt-4 bg-blue-500 text-white px-6 py-2 rounded"
             >
-              {t('cart.checkout')}
+              {getLocalizedText('cart.checkout')}
             </button>
           </div>
         </>
