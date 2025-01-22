@@ -77,6 +77,10 @@
       "cart.remove": "Remove",
       "cart.quantity": "Quantity",
       "cart.update": "Update Cart",
+
+
+      "cartNotification.addedToCart": "added to cart!",
+      "cartNotification.viewCart": "View Cart",
       
       
       "payment.title": "Payment",
@@ -180,6 +184,9 @@
       "cart.remove": "Kaldır",
       "cart.quantity": "Adet",
       "cart.update": "Sepeti Güncelle",
+
+      "cartNotification.addedToCart": "sepete eklendi!",
+      "cartNotification.viewCart": "Sepeti Görüntüle",
       
       
       "payment.title": "Ödeme",

@@ -32,7 +32,7 @@ const products = [
 ];
 
 const Store = () => {
-  const { getLocalizedPath } = useLanguage();
+  const { getLocalizedPath, getLocalizedText } = useLanguage();
   const { addToCart } = useCart();
   const [notification, setNotification] = useState<{ visible: boolean; productName: string }>({
     visible: false,
@@ -70,7 +70,7 @@ const Store = () => {
               onClick={() => handleAddToCart(product)}
               className="mt-2 w-full bg-[#C8B6A6] text-white py-2 px-4 rounded hover:bg-[#A4907C] transition-colors"
             >
-              Add to Cart
+              {getLocalizedText('store.addToCart')}  
             </button>
           </div>
         ))}
