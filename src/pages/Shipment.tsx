@@ -3,15 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
 import { useOrder } from '../context/OrderContext';
+import { orderApi } from '../services/api';
+import { AddressForm } from '../types/address';
 
-interface AddressForm {
-  fullName: string;
-  address: string;
-  city: string;
-  country: string;
-  postalCode: string;
-  phone: string;
-}
+
 
 const emptyAddress: AddressForm = {
   fullName: '',
@@ -108,46 +103,62 @@ function Shipment() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (isEditing) {
-      if (selectedAddressId) {
-        // Update existing address
-        updateAddress(
-          selectedAddressId, 
-          formData.addressName, 
-          formData.shipping,
-          sameAsShipping ? formData.shipping : formData.billing,
-          sameAsShipping
-        );
-        setShippingAddress(formData.shipping);
-        setBillingAddress(sameAsShipping ? formData.shipping : formData.billing);
-      } else {
-        // Save new address
-        if (formData.addressName.trim()) {
-          const savedAdress =saveAddress(
-            formData.addressName.trim(), 
+    try {
+      if (isEditing) {
+        if (selectedAddressId) {
+          // Update existing address
+          updateAddress(
+            selectedAddressId, 
+            formData.addressName, 
             formData.shipping,
             sameAsShipping ? formData.shipping : formData.billing,
             sameAsShipping
           );
-          
-          // Set the newly saved address as the current shipping and billing address
-          setSelectedAddressId(savedAdress.id);
           setShippingAddress(formData.shipping);
           setBillingAddress(sameAsShipping ? formData.shipping : formData.billing);
+        } else {
+          // Save new address
+          if (formData.addressName.trim()) {
+            const savedAdress = saveAddress(
+              formData.addressName.trim(), 
+              formData.shipping,
+              sameAsShipping ? formData.shipping : formData.billing,
+              sameAsShipping
+            );
+            
+            // Set the newly saved address as the current shipping and billing address
+            setSelectedAddressId(savedAdress.id);
+            setShippingAddress(formData.shipping);
+            setBillingAddress(sameAsShipping ? formData.shipping : formData.billing);
+          }
+        }
+        setIsEditing(false);
+      } else {
+        // Proceed to payment with selected address
+        const selectedAddress = savedAddresses.find(addr => addr.id === selectedAddressId);
+        if (selectedAddress) {
+          setShippingAddress(selectedAddress.shipping);
+          setBillingAddress(selectedAddress.sameAsShipping ? selectedAddress.shipping : selectedAddress.billing);
+          
+          // Create order with shipping details
+          const order = await orderApi.createOrder({
+            items: items.map(item => ({
+              productId: item.id,
+              quantity: item.quantity,
+              price: item.price
+            })),
+            shippingDetails: selectedAddress.shipping
+          });
+          
+          navigate(getLocalizedPath('/payment'));
         }
       }
-      setIsEditing(false);
-    } else {
-      // Proceed to payment with selected address
-      const selectedAddress = savedAddresses.find(addr => addr.id === selectedAddressId);
-      if (selectedAddress) {
-        setShippingAddress(selectedAddress.shipping);
-        setBillingAddress(selectedAddress.sameAsShipping ? selectedAddress.shipping : selectedAddress.billing);
-        navigate(getLocalizedPath('/payment'));
-      }
+    } catch (error) {
+      console.error('Order creation error:', error);
+      alert(getLocalizedText('shipment.error'));
     }
   };
 

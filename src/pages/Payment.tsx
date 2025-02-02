@@ -3,13 +3,10 @@ import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useOrder } from '../context/OrderContext';
 import { useNavigate } from 'react-router-dom';
+import { orderApi } from '../services/api';
+import { PaymentFormData } from '../types/payment';
 
-interface PaymentFormData {
-  cardNumber: string;
-  expiryDate: string;
-  cvv: string;
-  cardholderName: string;
-}
+
 
 function Payment() {
   const navigate = useNavigate();
@@ -40,26 +37,18 @@ function Payment() {
     e.preventDefault();
     
     try {
-      const response = await fetch('your-api-endpoint/process-payment', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          amount: getTotalPrice(),
-        }),
+      await orderApi.processPayment({
+        orderId: 1, // This should come from the order context after order creation
+        paymentMethod: 'CREDIT_CARD',
+        ...formData,
+        amount: getTotalPrice(),
       });
 
-      if (response.ok) {
-        alert('Payment successful!');
-        // Handle successful payment (clear cart, redirect, etc.)
-      } else {
-        alert('Payment failed. Please try again.');
-      }
+      alert(getLocalizedText('payment.success'));
+      navigate(getLocalizedPath('/confirmation'));
     } catch (error) {
       console.error('Payment error:', error);
-      alert('Payment failed. Please try again.');
+      alert(getLocalizedText('payment.error'));
     }
   };
 

@@ -1,24 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-
-const menu = {
-  drinks: [
-    { nameKey: 'cafe.menu.items.espresso', price: 3.50 },
-    { nameKey: 'cafe.menu.items.cappuccino', price: 4.50 },
-    { nameKey: 'cafe.menu.items.latte', price: 4.50 },
-    { nameKey: 'cafe.menu.items.americano', price: 3.50 },
-    { nameKey: 'cafe.menu.items.hotChocolate', price: 4.00 }
-  ],
-  food: [
-    { nameKey: 'cafe.menu.items.croissant', price: 3.50 },
-    { nameKey: 'cafe.menu.items.chocolateMuffin', price: 3.50 },
-    { nameKey: 'cafe.menu.items.avocadoToast', price: 8.50 },
-    { nameKey: 'cafe.menu.items.granolaBowl', price: 7.50 }
-  ]
-};
+import { menuApi, MenuItem } from '../services/api';
 
 const Cafe = () => {
   const { getLocalizedText, language } = useLanguage();
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchMenuItems = async () => {
+      try {
+        const data = await menuApi.getMenuItems();
+        setMenuItems(data);
+      } catch (err) {
+        setError('Failed to load menu items. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMenuItems();
+  }, []);
 
   // Convert price based on language
   const getPrice = (price: number) => {
@@ -27,6 +30,25 @@ const Cafe = () => {
     }
     return price.toFixed(2);
   };
+
+  if (loading) {
+    return (
+      <div className="pt-24 px-4 text-center">
+        <p>{getLocalizedText('cafe.loading')}</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="pt-24 px-4 text-center text-red-600">
+        <p>{error}</p>
+      </div>
+    );
+  }
+
+  const drinks = menuItems.filter(item => item.category === 'drinks');
+  const food = menuItems.filter(item => item.category === 'food');
 
   return (
     <div className="pt-24 px-4 max-w-4xl mx-auto">
@@ -45,8 +67,8 @@ const Cafe = () => {
         <div>
           <div className="mb-8">
             <h2 className="text-2xl font-light mb-4">{getLocalizedText('cafe.menu.drinks')}</h2>
-            {menu.drinks.map((item, index) => (
-              <div key={index} className="flex justify-between mb-2">
+            {drinks.map((item) => (
+              <div key={item.id} className="flex justify-between mb-2">
                 <span>{getLocalizedText(item.nameKey)}</span>
                 <span>{getLocalizedText('cafe.menu.currency')}{getPrice(item.price)}</span>
               </div>
@@ -54,8 +76,8 @@ const Cafe = () => {
           </div>
           <div>
             <h2 className="text-2xl font-light mb-4">{getLocalizedText('cafe.menu.food')}</h2>
-            {menu.food.map((item, index) => (
-              <div key={index} className="flex justify-between mb-2">
+            {food.map((item) => (
+              <div key={item.id} className="flex justify-between mb-2">
                 <span>{getLocalizedText(item.nameKey)}</span>
                 <span>{getLocalizedText('cafe.menu.currency')}{getPrice(item.price)}</span>
               </div>
