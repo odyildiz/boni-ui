@@ -4,3 +4,8 @@ export interface PaymentFormData {
   cvv: string;
   cardholderName: string;
 }
+
+export interface PaymentDetails extends PaymentFormData {
+  paymentMethod: string;
+  amount: number;
+}
