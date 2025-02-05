@@ -15,7 +15,7 @@ export interface MenuItem {
   category: 'drinks' | 'food';
 }
 
-const API_BASE_URL = 'http://localhost:8080/api';
+const API_BASE_URL = '/api';
 
 export interface OrderItem {
   productId: number;
@@ -66,6 +66,7 @@ export const orderApi = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       },
       body: JSON.stringify(orderData),
     });
@@ -78,6 +79,7 @@ export const orderApi = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       },
       body: JSON.stringify(paymentData),
     });
@@ -90,6 +92,7 @@ export const orderApi = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       },
     });
     if (!response.ok) throw new Error('Failed to initiate shipment');
@@ -101,6 +104,7 @@ export const orderApi = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       },
     });
     if (!response.ok) throw new Error('Failed to cancel order');
