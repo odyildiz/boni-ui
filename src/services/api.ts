@@ -15,7 +15,7 @@ export interface MenuItem {
   category: 'drinks' | 'food';
 }
 
-const API_BASE_URL = 'http://localhost:8080/api';
+const API_BASE_URL = import.meta.env.VITE_BACKEND_API_URL || 'http://localhost:8080/api';
 
 export interface OrderItem {
   productId: number;
