@@ -19,8 +19,14 @@ const Bio = () => {
           <p className="mb-4">
             {getLocalizedText('bio.p2')}  
           </p>
-          <p>
+          <p className="mb-4">
             {getLocalizedText('bio.p3')}  
+          </p>
+          <p className="mb-4">
+            {getLocalizedText('bio.p4')}  
+          </p>
+          <p className="mb-4">
+            {getLocalizedText('bio.p5')}  
           </p>
         </div>
       </div>

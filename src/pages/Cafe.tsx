@@ -1,32 +1,60 @@
-import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
 const menu = {
-  drinks: [
-    { nameKey: 'cafe.menu.items.espresso', price: 3.50 },
-    { nameKey: 'cafe.menu.items.cappuccino', price: 4.50 },
-    { nameKey: 'cafe.menu.items.latte', price: 4.50 },
-    { nameKey: 'cafe.menu.items.americano', price: 3.50 },
-    { nameKey: 'cafe.menu.items.hotChocolate', price: 4.00 }
+  coffee: [
+    { nameKey: 'cafe.menu.items.single-espresso', price: 80.00 },
+    { nameKey: 'cafe.menu.items.double-espresso', price: 90.00 },
+    { nameKey: 'cafe.menu.items.lungo', price: 80.00 },
+    { nameKey: 'cafe.menu.items.americano', price: 100.00 },
+    { nameKey: 'cafe.menu.items.caramel-latte', price: 130.00 },
+    { nameKey: 'cafe.menu.items.vanilla-latte', price: 130.00 },
+    { nameKey: 'cafe.menu.items.latte', price: 120.00 },
+    { nameKey: 'cafe.menu.items.cappuccino', price: 120.00 },
+    { nameKey: 'cafe.menu.items.flat-white', price: 120.00 },
+    { nameKey: 'cafe.menu.items.cortado', price: 115.00 },
+    { nameKey: 'cafe.menu.items.cafe-miel', price: 140.00 },
+    { nameKey: 'cafe.menu.items.mocha', price: 130.00 },
+    { nameKey: 'cafe.menu.items.white-chocolate-mocha', price: 130.00 },
+    { nameKey: 'cafe.menu.items.filter-coffee', price: 100.00 },
+    { nameKey: 'cafe.menu.items.turkish-coffee', price: 75.00 }
   ],
-  food: [
-    { nameKey: 'cafe.menu.items.croissant', price: 3.50 },
-    { nameKey: 'cafe.menu.items.chocolateMuffin', price: 3.50 },
-    { nameKey: 'cafe.menu.items.avocadoToast', price: 8.50 },
-    { nameKey: 'cafe.menu.items.granolaBowl', price: 7.50 }
+  coldcoffee: [
+    { nameKey: 'cafe.menu.items.iced-americano', price: 120.00 },
+    { nameKey: 'cafe.menu.items.iced-latte', price: 130.00 },
+    { nameKey: 'cafe.menu.items.iced-flat-white', price: 130.00 },
+    { nameKey: 'cafe.menu.items.iced-mocha', price: 135.00 },
+    { nameKey: 'cafe.menu.items.iced-white-chocolate-mocha', price: 135.00 },
+    { nameKey: 'cafe.menu.items.affogato', price: 140.00 }
+  ],
+  drinks: [
+    { nameKey: 'cafe.menu.items.honey-milk', price: 100.00 },
+    { nameKey: 'cafe.menu.items.salep', price: 125.00 },
+    { nameKey: 'cafe.menu.items.hot-chocolate', price: 130.00 },
+    { nameKey: 'cafe.menu.items.tea', price: 30.00 },
+    { nameKey: 'cafe.menu.items.cup-tea', price: 50.00 },
+    { nameKey: 'cafe.menu.items.herbal-tea', price: 110.00 }
+  ],
+  colddrinks: [
+    { nameKey: 'cafe.menu.items.mineral-water', price: 50.00 },
+    { nameKey: 'cafe.menu.items.churchill', price: 80.00 },
+    { nameKey: 'cafe.menu.items.fizzy-drink', price: 80.00 },
+    { nameKey: 'cafe.menu.items.cold-chocolate', price: 135.00 },
+    { nameKey: 'cafe.menu.items.orange-juice', price: 120.00 },
+    { nameKey: 'cafe.menu.items.water', price: 30.00 }
+  ],
+  snacks: [
+    { nameKey: 'cafe.menu.items.boni-toast', price: 190.00 },
+    { nameKey: 'cafe.menu.items.white-tomato-toast', price: 190.00 },
+    { nameKey: 'cafe.menu.items.kashar-toast', price: 170.00 }
+  ],
+  desserts: [
+    { nameKey: 'cafe.menu.items.brownie', price: 190.00 },
+    { nameKey: 'cafe.menu.items.chocolate-cookie', price: 80.00 }
   ]
 };
 
 const Cafe = () => {
-  const { getLocalizedText, language } = useLanguage();
-
-  // Convert price based on language
-  const getPrice = (price: number) => {
-    if (language === 'tr') {
-      return (price * 30).toFixed(2); // Example conversion rate
-    }
-    return price.toFixed(2);
-  };
+  const { getLocalizedText } = useLanguage();
 
   return (
     <div className="pt-24 px-4 max-w-4xl mx-auto">
@@ -44,20 +72,47 @@ const Cafe = () => {
         </div>
         <div>
           <div className="mb-8">
+            <h2 className="text-2xl font-light mb-4"><b>{getLocalizedText('cafe.menu.coffee')}</b></h2>
+            {menu.drinks.map((item, index) => (
+              <div key={index} className="flex justify-between mb-2">
+                <span>{getLocalizedText(item.nameKey)}</span>
+                <span>{item.price}₺</span>
+              </div>
+            ))}
+          </div>
+          <div className="mb-8">
+            <h2 className="text-2xl font-light mb-4">{getLocalizedText('cafe.menu.coldcoffee')}</h2>
+            {menu.drinks.map((item, index) => (
+              <div key={index} className="flex justify-between mb-2">
+                <span>{getLocalizedText(item.nameKey)}</span>
+                <span>{item.price}₺</span>
+              </div>
+            ))}
+          </div>
+          <div className="mb-8">
             <h2 className="text-2xl font-light mb-4">{getLocalizedText('cafe.menu.drinks')}</h2>
             {menu.drinks.map((item, index) => (
               <div key={index} className="flex justify-between mb-2">
                 <span>{getLocalizedText(item.nameKey)}</span>
-                <span>{getLocalizedText('cafe.menu.currency')}{getPrice(item.price)}</span>
+                <span>{item.price}₺</span>
               </div>
             ))}
           </div>
-          <div>
-            <h2 className="text-2xl font-light mb-4">{getLocalizedText('cafe.menu.food')}</h2>
-            {menu.food.map((item, index) => (
+          <div className="mb-8">
+            <h2 className="text-2xl font-light mb-4">{getLocalizedText('cafe.menu.colddrinks')}</h2>
+            {menu.drinks.map((item, index) => (
               <div key={index} className="flex justify-between mb-2">
                 <span>{getLocalizedText(item.nameKey)}</span>
-                <span>{getLocalizedText('cafe.menu.currency')}{getPrice(item.price)}</span>
+                <span>{item.price}₺</span>
+              </div>
+            ))}
+          </div>
+          <div className="mb-8">
+            <h2 className="text-2xl font-light mb-4">{getLocalizedText('cafe.menu.snacks')}</h2>
+            {menu.drinks.map((item, index) => (
+              <div key={index} className="flex justify-between mb-2">
+                <span>{getLocalizedText(item.nameKey)}</span>
+                <span>{item.price}₺</span>
               </div>
             ))}
           </div>
