@@ -49,7 +49,6 @@
       "cafe.menu.items.salep": "Salep",
       "cafe.menu.items.hot-chocolate": "Hot Chocolate",
       "cafe.menu.items.tea": "Tea",
-      "cafe.menu.items.cup-tea": "Tea (Cup)",
       "cafe.menu.items.herbal-tea": "Herbal Tea (Sage, Lemon Balm, Green, Linden, Daisy, Winter)",
 
       "cafe.menu.items.mineral-water": "Mineral Water",
@@ -65,6 +64,11 @@
       "cafe.menu.items.boni-toast": "Boni Toast (Balkan Sauce, Ezine Cheese, Kashar Cheese)",
       "cafe.menu.items.white-tomato-toast": "White Cheese with Tomato Toast (Ezine Cheese, Tomato, Olive Oil, Thyme)",
       "cafe.menu.items.kashar-toast": "Kashar Cheese Toast",
+
+      "cafe.menu.items.extra.shot": "Shot",
+      "cafe.menu.items.extra.syrup": "Syrup",
+      "cafe.menu.items.extra.milk": "Milk",
+      "cafe.menu.items.extra.ice-cream": "Ice Cream",
       
       
       "store.title": "Store",
@@ -215,7 +219,6 @@
       "cafe.menu.items.salep": "Salep",
       "cafe.menu.items.hot-chocolate": "Sıcak Çikolata",
       "cafe.menu.items.tea": "Çay",
-      "cafe.menu.items.cup-tea": "Çay (Fincan)",
       "cafe.menu.items.herbal-tea": "Bitki Çayı (Ada, Melisa, Yeşil, Ihlamur, Papatya, Kış Çayı)",
 
       "cafe.menu.items.mineral-water": "Maden Suyu",
@@ -231,6 +234,11 @@
       "cafe.menu.items.boni-toast": "Boni Tost (Balkan Sos, Ezine Peyniri, Kaşar Peyniri)",
       "cafe.menu.items.white-tomato-toast": "Beyaz Peynirli Domatesli Tost (Ezine Peyniri, Domates, Zeytin Yağı, Kekik)",
       "cafe.menu.items.kashar-toast": "Kaşar Peyniri",
+
+      "cafe.menu.items.extra.shot": "Shot",
+      "cafe.menu.items.extra.syrup": "Şurup",
+      "cafe.menu.items.extra.milk": "Süt",
+      "cafe.menu.items.extra.ice-cream": "Dondurma",
       
       
       "store.title": "Mağaza",
