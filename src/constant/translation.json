@@ -1,9 +1,13 @@
 {
     "en": {
+
+      "coming.soon": "Will be here soon!",
       
       "nav.home": "Home",
       "nav.cafe": "Cafe",
       "nav.store": "Store",
+      "nav.gallery": "Gallery",
+      "nav.studio": "Studio",
       "nav.bio": "Bio",
       "nav.contact": "Contact",
       "nav.cart": "Cart",
@@ -170,10 +174,14 @@
       "product.relatedProducts": "Related Products"
     },
     "tr": {
+
+      "coming.soon": "Yakında buradayız!",
       
       "nav.home": "Ana Sayfa",
       "nav.cafe": "Kafe",
       "nav.store": "Mağaza",
+      "nav.gallery": "Galeri",
+      "nav.studio": "Stüdyo",
       "nav.bio": "Hakkımızda",
       "nav.contact": "İletişim",
       "nav.cart": "Sepet",
