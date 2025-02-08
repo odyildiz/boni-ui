@@ -7,13 +7,19 @@ const Contact = () => {
 
   return (
     <div className="pt-24 px-4 max-w-4xl mx-auto">
-      <h1 className="text-4xl font-light mb-8">{getLocalizedText('contact.title')}</h1>
+      <h1 className="text-4xl font-light mb-8 text-center border-b-2 border-[#C8B6A6] pb-4">{getLocalizedText('contact.title')}</h1>
       <div className="grid md:grid-cols-2 gap-12">
         <div className="space-y-6">
           <div>
-            <h2 className="text-2xl font-light mb-4">{getLocalizedText('contact.visitUs')}</h2>
+            <h2 className="text-2xl font-light mb-4 text-[#8B7355] border-l-4 border-[#C8B6A6] pl-4">{getLocalizedText('contact.visitUs')}</h2>
             <div className="space-y-4">
-              <p className="flex items-center">                <Phone className="w-5 h-5 mr-2" />                0 (536) 568 92 24              </p>
+              <a
+                href="tel:+905365689224"
+                className="flex items-center hover:text-[#8B7355] transition-colors"
+              >
+                <Phone className="w-5 h-5 mr-2" />
+                0 (536) 568 92 24
+              </a>
               <a
                 href="https://maps.app.goo.gl/nJcyFHrxSWMU79xHA"
                 target="_blank"
@@ -38,10 +44,10 @@ const Contact = () => {
             </div>
           </div>
           <div>
-            <h2 className="text-2xl font-light mb-4">{getLocalizedText('contact.hours')}</h2>
-            <div className="space-y-2">
-              <p>{getLocalizedText('contact.mondayClosed')}</p>
-              <p>{getLocalizedText('contact.otherDays')}</p>
+            <h2 className="text-2xl font-light mb-4 text-[#8B7355] border-l-4 border-[#C8B6A6] pl-4">{getLocalizedText('contact.hours')}</h2>
+            <div className="space-y-2 bg-[#F9F5F2] p-4 rounded-lg">
+              <p className="text-[#A4907C] font-medium">{getLocalizedText('contact.mondayClosed')}</p>
+              <p className="text-[#8B7355]">{getLocalizedText('contact.otherDays')}</p>
             </div>
           </div>
         </div>
