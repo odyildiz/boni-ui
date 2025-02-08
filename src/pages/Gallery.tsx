@@ -4,41 +4,75 @@ const photos = [
   {
     id: 1,
     url: "https://images.unsplash.com/photo-1470115636492-6d2b56f9146d",
-    title: "Urban Landscape"
+    title: "Coffee Brewing",
+    category: "cafe"
   },
   {
     id: 2,
     url: "https://images.unsplash.com/photo-1470093851219-69951fcbb533",
-    title: "Street Life"
+    title: "Latte Art",
+    category: "cafe"
   },
   {
     id: 3,
     url: "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d",
-    title: "Nature's Path"
+    title: "Studio Space",
+    category: "studio"
   },
   {
     id: 4,
     url: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e",
-    title: "Mountain View"
+    title: "Event Setup",
+    category: "events"
   },
   {
     id: 5,
     url: "https://images.unsplash.com/photo-1470093851219-69951fcbb533",
-    title: "City Nights"
+    title: "Coffee Beans",
+    category: "cafe"
   },
   {
     id: 6,
     url: "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d",
-    title: "Forest Walk"
+    title: "Studio Equipment",
+    category: "studio"
   }
+];
+
+const categories = [
+  { id: 'all', label: 'All' },
+  { id: 'cafe', label: 'Cafe' },
+  { id: 'studio', label: 'Studio' },
+  { id: 'events', label: 'Events' }
 ];
 
 const Gallery = () => {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  const filteredPhotos = selectedCategory === 'all'
+    ? photos
+    : photos.filter(photo => photo.category === selectedCategory);
 
   return (
     <div className="pt-24 px-4 max-w-7xl mx-auto">
       <h1 className="text-4xl font-light mb-8">Gallery</h1>
+      
+      <div className="flex gap-4 mb-8">
+        {categories.map(category => (
+          <button
+            key={category.id}
+            onClick={() => setSelectedCategory(category.id)}
+            className={`px-4 py-2 rounded-full transition-colors ${selectedCategory === category.id
+              ? 'bg-[#C8B6A6] text-white'
+              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+            }`}
+          >
+            {category.label}
+          </button>
+        ))}
+      </div>
+
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {photos.map((photo) => (
           <div

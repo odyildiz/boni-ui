@@ -39,6 +39,8 @@ const Navigation = () => {
         <li><Link to={getLocalizedPath('/')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.home')}</Link></li>
         <li><Link to={getLocalizedPath('/cafe')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.cafe')}</Link></li>
         <li><Link to={getLocalizedPath('/store')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.store')}</Link></li>
+        <li><Link to={getLocalizedPath('/gallery')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.gallery')}</Link></li>
+        <li><Link to={getLocalizedPath('/studio')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.studio')}</Link></li>
         <li><Link to={getLocalizedPath('/bio')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.bio')}</Link></li>
         <li><Link to={getLocalizedPath('/contact')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.contact')}</Link></li>
         <li className="cart-link">
@@ -78,4 +80,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation; 
+export default Navigation;
