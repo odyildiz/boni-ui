@@ -8,8 +8,8 @@ const Contact = () => {
   return (
     <div className="pt-24 px-4 max-w-4xl mx-auto">
       <h1 className="text-4xl font-light mb-8 text-center border-b-2 border-[#C8B6A6] pb-4">{getLocalizedText('contact.title')}</h1>
-      <div className="grid md:grid-cols-2 gap-12">
-        <div className="space-y-6">
+      <div className="flex justify-center">
+        <div className="w-full max-w-2xl space-y-6">
           <div>
             <h2 className="text-2xl font-light mb-4 text-[#8B7355] border-l-4 border-[#C8B6A6] pl-4">{getLocalizedText('contact.visitUs')}</h2>
             <div className="space-y-4">
