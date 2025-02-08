@@ -67,7 +67,7 @@ const Cafe = () => {
       <div>
         <div>
           <div className="mb-12">
-            <h2 className="text-3xl font-light mb-8 pb-3 border-b-2 border-[#C8B6A6] text-[#8B7355]">{getLocalizedText('cafe.menu.coffee')}</h2>
+            <h2 className="text-2xl font-light mb-4 text-[#8B7355] border-l-4 border-[#C8B6A6] pl-4">{getLocalizedText('cafe.menu.coffee')}</h2>
             {menu.coffee.map((item, index) => (
               <div key={index} className="flex justify-between mb-3">
                 <span className="mr-12 flex-1">{getLocalizedText(item.nameKey)}</span>
@@ -76,7 +76,7 @@ const Cafe = () => {
             ))}
           </div>
           <div className="mb-12">
-            <h2 className="text-3xl font-light mb-8 pb-3 border-b-2 border-[#C8B6A6] text-[#8B7355]">{getLocalizedText('cafe.menu.coldcoffee')}</h2>
+            <h2 className="text-2xl font-light mb-4 text-[#8B7355] border-l-4 border-[#C8B6A6] pl-4">{getLocalizedText('cafe.menu.coldcoffee')}</h2>
             {menu.coldcoffee.map((item, index) => (
               <div key={index} className="flex justify-between mb-3">
                 <span className="mr-12 flex-1">{getLocalizedText(item.nameKey)}</span>
@@ -85,7 +85,7 @@ const Cafe = () => {
             ))}
           </div>
           <div className="mb-12">
-            <h2 className="text-3xl font-light mb-8 pb-3 border-b-2 border-[#C8B6A6] text-[#8B7355]">{getLocalizedText('cafe.menu.drinks')}</h2>
+            <h2 className="text-2xl font-light mb-4 text-[#8B7355] border-l-4 border-[#C8B6A6] pl-4">{getLocalizedText('cafe.menu.drinks')}</h2>
             {menu.drinks.map((item, index) => (
               <div key={index} className="flex justify-between mb-3">
                 <span className="mr-12 flex-1">{getLocalizedText(item.nameKey)}</span>
@@ -94,7 +94,7 @@ const Cafe = () => {
             ))}
           </div>
           <div className="mb-12">
-            <h2 className="text-3xl font-light mb-8 pb-3 border-b-2 border-[#C8B6A6] text-[#8B7355]">{getLocalizedText('cafe.menu.colddrinks')}</h2>
+            <h2 className="text-2xl font-light mb-4 text-[#8B7355] border-l-4 border-[#C8B6A6] pl-4">{getLocalizedText('cafe.menu.colddrinks')}</h2>
             {menu.colddrinks.map((item, index) => (
               <div key={index} className="flex justify-between mb-3">
                 <span className="mr-12 flex-1">{getLocalizedText(item.nameKey)}</span>
@@ -103,7 +103,7 @@ const Cafe = () => {
             ))}
           </div>
           <div className="mb-12">
-            <h2 className="text-3xl font-light mb-8 pb-3 border-b-2 border-[#C8B6A6] text-[#8B7355]">{getLocalizedText('cafe.menu.snacks')}</h2>
+            <h2 className="text-2xl font-light mb-4 text-[#8B7355] border-l-4 border-[#C8B6A6] pl-4">{getLocalizedText('cafe.menu.snacks')}</h2>
             {menu.snacks.map((item, index) => (
               <div key={index} className="flex justify-between mb-3">
                 <span className="mr-12 flex-1">{getLocalizedText(item.nameKey)}</span>
@@ -112,7 +112,7 @@ const Cafe = () => {
             ))}
           </div>
           <div className="mb-12">
-            <h2 className="text-3xl font-light mb-8 pb-3 border-b-2 border-[#C8B6A6] text-[#8B7355]">{getLocalizedText('cafe.menu.desserts')}</h2>
+            <h2 className="text-2xl font-light mb-4 text-[#8B7355] border-l-4 border-[#C8B6A6] pl-4">{getLocalizedText('cafe.menu.desserts')}</h2>
             {menu.desserts.map((item, index) => (
               <div key={index} className="flex justify-between mb-3">
                 <span className="mr-12 flex-1">{getLocalizedText(item.nameKey)}</span>
