@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "add-domain": "echo \"www.bonigraphy.com\" > dist/CNAME",
+    "deploy": "npm run add-domain && gh-pages -d dist"
   },
   "dependencies": {
     "gh-pages": "^6.3.0",
