@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import { LanguageProvider } from './context/LanguageContext';
 
@@ -13,7 +13,6 @@ const Gallery = lazy(() => import('./pages/Gallery').then(module => ({ default: 
 const Studio = lazy(() => import('./pages/Studio').then(module => ({ default: module.default || module })));
 
 const AppRoutes: React.FC = () => {
-
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -55,9 +54,9 @@ const AppRoutes: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Router>
-          <LanguageProvider>
-            <AppRoutes />
-          </LanguageProvider>
+      <LanguageProvider>
+        <AppRoutes />
+      </LanguageProvider>
     </Router>
   );
 };
