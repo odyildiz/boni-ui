@@ -6,7 +6,7 @@ import { Instagram } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import '../styles/Navigation.css';
-import boniLogo from '../media/boni-logo.jpg';
+import boniLogo from '../../boni-logo.jpg';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
