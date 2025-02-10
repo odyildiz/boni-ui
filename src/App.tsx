@@ -6,7 +6,6 @@ import { LanguageProvider } from './context/LanguageContext';
 // Lazy load pages with default export
 const Home = lazy(() => import('./pages/Home').then(module => ({ default: module.default || module })));
 const Cafe = lazy(() => import('./pages/Cafe').then(module => ({ default: module.default || module })));
-const Store = lazy(() => import('./pages/Store').then(module => ({ default: module.default || module })));
 const Contact = lazy(() => import('./pages/Contact').then(module => ({ default: module.default || module })));
 const Bio = lazy(() => import('./pages/Bio').then(module => ({ default: module.default || module })));
 const Gallery = lazy(() => import('./pages/Gallery').then(module => ({ default: module.default || module })));
@@ -27,7 +26,6 @@ const AppRoutes: React.FC = () => {
             <Route path="/en" element={<Navigate to="/en/" replace />} />
             <Route path="/en/" element={<Home />} />
             <Route path="/en/cafe" element={<Cafe />} />
-            <Route path="/en/store" element={<Store />} />
             <Route path="/en/contact" element={<Contact />} />
             <Route path="/en/bio" element={<Bio />} />
             <Route path="/en/gallery" element={<Gallery />} />
@@ -36,7 +34,6 @@ const AppRoutes: React.FC = () => {
             {/* Turkish routes */}
             <Route path="/" element={<Home />} />
             <Route path="/cafe" element={<Cafe />} />
-            <Route path="/store" element={<Store />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/bio" element={<Bio />} />
             <Route path="/gallery" element={<Gallery />} />
