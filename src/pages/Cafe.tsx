@@ -1,61 +1,13 @@
 import { useLanguage } from '../context/LanguageContext';
 
 const menu = {
-  coffee: [
-    { nameKey: 'cafe.menu.items.single-espresso', price: 80.00 },
-    { nameKey: 'cafe.menu.items.double-espresso', price: 90.00 },
-    { nameKey: 'cafe.menu.items.lungo', price: 80.00, price2: 100.00 },
-    { nameKey: 'cafe.menu.items.americano', price: 100.00 },
-    { nameKey: 'cafe.menu.items.caramel-latte', price: 130.00 },
-    { nameKey: 'cafe.menu.items.vanilla-latte', price: 130.00 },
-    { nameKey: 'cafe.menu.items.latte', price: 120.00 },
-    { nameKey: 'cafe.menu.items.cappuccino', price: 120.00 },
-    { nameKey: 'cafe.menu.items.flat-white', price: 120.00 },
-    { nameKey: 'cafe.menu.items.cortado', price: 115.00 },
-    { nameKey: 'cafe.menu.items.cafe-miel', price: 140.00 },
-    { nameKey: 'cafe.menu.items.mocha', price: 130.00 },
-    { nameKey: 'cafe.menu.items.white-chocolate-mocha', price: 130.00 },
-    { nameKey: 'cafe.menu.items.filter-coffee', price: 100.00 },
-    { nameKey: 'cafe.menu.items.turkish-coffee', price: 75.00, price2: 90.00}
-  ],
-  coldcoffee: [
-    { nameKey: 'cafe.menu.items.iced-americano', price: 120.00 },
-    { nameKey: 'cafe.menu.items.iced-latte', price: 130.00 },
-    { nameKey: 'cafe.menu.items.iced-flat-white', price: 130.00 },
-    { nameKey: 'cafe.menu.items.iced-mocha', price: 135.00 },
-    { nameKey: 'cafe.menu.items.iced-white-chocolate-mocha', price: 135.00 },
-    { nameKey: 'cafe.menu.items.affogato', price: 140.00 }
-  ],
-  extra: [
-    { nameKey: 'cafe.menu.items.extra.shot', price: 30.00 },
-    { nameKey: 'cafe.menu.items.extra.syrup', price: 15.00 },
-    { nameKey: 'cafe.menu.items.extra.milk', price: 15.00 },
-    { nameKey: 'cafe.menu.items.extra.ice-cream', price: 30.00 }
-  ],
-  drinks: [
-    { nameKey: 'cafe.menu.items.honey-milk', price: 100.00 },
-    { nameKey: 'cafe.menu.items.salep', price: 125.00 },
-    { nameKey: 'cafe.menu.items.hot-chocolate', price: 130.00 },
-    { nameKey: 'cafe.menu.items.tea', price: 30.00, price2: 50.00 },
-    { nameKey: 'cafe.menu.items.herbal-tea', price: 110.00 }
-  ],
-  colddrinks: [
-    { nameKey: 'cafe.menu.items.mineral-water', price: 50.00 },
-    { nameKey: 'cafe.menu.items.churchill', price: 80.00 },
-    { nameKey: 'cafe.menu.items.fizzy-drink', price: 80.00 },
-    { nameKey: 'cafe.menu.items.cold-chocolate', price: 135.00 },
-    { nameKey: 'cafe.menu.items.orange-juice', price: 120.00 },
-    { nameKey: 'cafe.menu.items.water', price: 30.00 }
-  ],
-  snacks: [
-    { nameKey: 'cafe.menu.items.boni-toast', price: 190.00 },
-    { nameKey: 'cafe.menu.items.white-tomato-toast', price: 190.00 },
-    { nameKey: 'cafe.menu.items.kashar-toast', price: 170.00 }
-  ],
-  desserts: [
-    { nameKey: 'cafe.menu.items.brownie', price: 190.00 },
-    { nameKey: 'cafe.menu.items.chocolate-cookie', price: 80.00 }
-  ]
+  coffee: JSON.parse(import.meta.env.VITE_MENU_COFFEE),
+  coldcoffee: JSON.parse(import.meta.env.VITE_MENU_COLDCOFFEE),
+  extra: JSON.parse(import.meta.env.VITE_MENU_EXTRA),
+  drinks: JSON.parse(import.meta.env.VITE_MENU_DRINKS),
+  colddrinks: JSON.parse(import.meta.env.VITE_MENU_COLDDRINKS),
+  snacks: JSON.parse(import.meta.env.VITE_MENU_SNACKS),
+  desserts: JSON.parse(import.meta.env.VITE_MENU_DESSERTS)
 };
 
 const Cafe = () => {
