@@ -1,11 +1,12 @@
 {
-  "name": "photography-portfolio",
+  "name": "bonigraphy-ui",
   "homepage": "https://www.bonigraphy.com/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node src/fetch-build-data.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
