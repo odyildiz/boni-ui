@@ -6,9 +6,15 @@ const BASE_API_URL = import.meta.env?.VITE_BASE_API_URL || 'http://localhost:808
 const MENU_CONTENT_URL = 'menu/list'; 
 const MENU_CONTENT_PATH = 'src/content/menu-content.json';
 
+const GALLERY_CONTENT_URL = 'gallery/list'; 
+const GALLERY_CONTENT_PATH = 'src/content/gallery-content.json';
+
 createContent(MENU_CONTENT_PATH, MENU_CONTENT_URL);
+createContent(GALLERY_CONTENT_PATH, GALLERY_CONTENT_URL);
 
 async function createContent(contentFilePath, url) {
+
+  console.log('fetching ' + BASE_API_URL + url)
 
   try {
     const response = await fetch(BASE_API_URL + url);
