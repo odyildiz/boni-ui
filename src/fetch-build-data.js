@@ -1,7 +1,7 @@
 import { writeFile } from 'fs/promises';
 import { resolve } from 'path';
 
-const BASE_API_URL = 'http://localhost:8080';
+const BASE_API_URL = import.meta.env?.VITE_BASE_API_URL || 'http://localhost:8080';
 
 const MENU_CONTENT_URL = '/ui/menu/list'; 
 const MENU_CONTENT_PATH = 'src/content/menu-content.json';
