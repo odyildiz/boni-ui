@@ -13,7 +13,7 @@ const Studio = lazy(() => import('./pages/Studio').then(module => ({ default: mo
 
 const AppRoutes: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white md:ml-[280px]">
       <Navigation />
       <main className="main-content">
         <Suspense fallback={
