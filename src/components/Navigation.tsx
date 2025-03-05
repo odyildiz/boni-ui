@@ -20,8 +20,7 @@ const Navigation = () => {
     <nav className="navigation">
       <div className="nav-brand">
         <Link to={getLocalizedPath('/')}>
-          <img src={boniLogo} alt="Boni Cafe & Studio" className="h-8 mr-2" />
-          <span>Boni Cafe & Studio</span>
+          <span>Bonigraphy</span>
         </Link>
       </div>
       
