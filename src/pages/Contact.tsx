@@ -11,7 +11,7 @@ const Contact = () => {
       <div className="flex justify-center">
         <div className="w-full max-w-2xl space-y-6">
           <div>
-            <h2 className="text-2xl font-light mb-4 text-[#8B7355] border-l-4 border-[#C8B6A6] pl-4">{getLocalizedText('contact.visitUs')}</h2>
+            <h2 className="text-2xl font-light mb-4 text-gray-300 border-l-4 border-gray-400 pl-4">{getLocalizedText('contact.visitUs')}</h2>
             <div className="space-y-4">
               <a
                 href="tel:+905365689224"
@@ -24,7 +24,7 @@ const Contact = () => {
                 href="https://maps.app.goo.gl/nJcyFHrxSWMU79xHA"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center text-[#A4907C] hover:text-[#8B7355] transition-colors mb-4"
+                className="flex items-center text-gray-400 hover:text-gray-200 transition-colors mb-4"
               >
                 <MapPin className="w-5 h-5 mr-2" />
                 Rasimpaşa, Duatepe Sk. 43/a, 34716 Kadıköy/İstanbul
@@ -44,10 +44,10 @@ const Contact = () => {
             </div>
           </div>
           <div>
-            <h2 className="text-2xl font-light mb-4 text-[#8B7355] border-l-4 border-[#C8B6A6] pl-4">{getLocalizedText('contact.hours')}</h2>
-            <div className="space-y-2 bg-[#F9F5F2] p-4 rounded-lg">
-              <p className="text-[#A4907C] font-medium">{getLocalizedText('contact.mondayClosed')}</p>
-              <p className="text-[#8B7355]">{getLocalizedText('contact.otherDays')}</p>
+            <h2 className="text-2xl font-light mb-4 text-gray-300 border-l-4 border-gray-400 pl-4">{getLocalizedText('contact.hours')}</h2>
+            <div className="space-y-2 bg-gray-800 p-4 rounded-lg">
+              <p className="text-gray-300 font-medium">{getLocalizedText('contact.mondayClosed')}</p>
+              <p className="text-gray-400">{getLocalizedText('contact.otherDays')}</p>
             </div>
           </div>
         </div>

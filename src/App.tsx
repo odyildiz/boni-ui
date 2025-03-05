@@ -13,12 +13,12 @@ const Studio = lazy(() => import('./pages/Studio').then(module => ({ default: mo
 
 const AppRoutes: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white md:ml-[280px]">
+    <div className="min-h-screen bg-black text-gray-200 md:ml-[280px] flex flex-col">
       <Navigation />
-      <main className="main-content">
+      <main className="main-content flex-1">
         <Suspense fallback={
           <div className="flex justify-center items-center h-screen">
-            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-200"></div>
           </div>
         }>
           <Routes>

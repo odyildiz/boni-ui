@@ -6,7 +6,6 @@ import { Instagram } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import '../styles/Navigation.css';
-import boniLogo from '../../boni-logo.jpg';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +19,12 @@ const Navigation = () => {
     <nav className="navigation">
       <div className="nav-brand">
         <Link to={getLocalizedPath('/')}>
-          <span>Bonigraphy</span>
+        <img 
+          src={'../../media/bonigraphy-logo.png'} 
+          width="200px" 
+          height="200px" 
+          style={{ display: 'block', margin: '0 auto' }}
+        />
         </Link>
       </div>
       
