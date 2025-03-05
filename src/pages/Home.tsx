@@ -6,7 +6,7 @@ const Home = () => {
       </div>
       <div className="px-8 py-8">
         <img
-          src= '../../media/home.jpeg'
+          src= '../../home.jpeg'
           className="w-full h-auto rounded-lg shadow-lg border border-gray-800"
           alt="Özenç Yıldız Photography"
         />

@@ -20,7 +20,7 @@ const Navigation = () => {
       <div className="nav-brand">
         <Link to={getLocalizedPath('/')}>
         <img 
-          src={'../../media/bonigraphy-logo.png'} 
+          src={'../../bonigraphy-logo.png'} 
           width="200px" 
           height="200px" 
           style={{ display: 'block', margin: '0 auto' }}

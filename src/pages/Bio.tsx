@@ -8,7 +8,7 @@ const Bio = () => {
       <h1 className="text-4xl font-light mb-8 text-[#C8B6A6]">{getLocalizedText('bio.title')}</h1>
       <div className="grid md:grid-cols-2 gap-8">
         <img
-          src="../../media/bio.jpeg"
+          src="../../bio.jpeg"
           alt="Photographer portrait"
           className="w-full h-128 object-cover"
         />
