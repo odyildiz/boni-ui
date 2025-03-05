@@ -1,3 +1,4 @@
+import homeImage from '../../media/home.jpeg';
 const Home = () => {
   return (
     <div className="min-h-screen w-full relative bg-black">
@@ -6,7 +7,7 @@ const Home = () => {
       </div>
       <div className="px-8 py-8">
         <img
-          src= '../../home.jpeg'
+          src= {homeImage}
           className="w-full h-auto rounded-lg shadow-lg border border-gray-800"
           alt="Özenç Yıldız Photography"
         />
