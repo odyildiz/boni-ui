@@ -1,23 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import galleryContent from '../content/gallery-content.json';
 import { useLanguage } from '../context/LanguageContext';
+import '../styles/Gallery.css'
 
 const Gallery = () => {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [displayedPhotos, setDisplayedPhotos] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
   const { language } = useLanguage();
   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+  const photosPerPage = 3;
+
+  useEffect(() => {
+    loadMorePhotos();
+  }, []);
+
+  const loadMorePhotos = () => {
+    setCurrentPage(prevPage => {
+      const start = prevPage * photosPerPage;
+      const end = start + photosPerPage;
+      const newPhotos = galleryContent.photos.slice(start, end);
+
+      if (newPhotos.length > 0) {
+        setDisplayedPhotos(prev => [...prev, ...newPhotos]);
+        if (end >= galleryContent.photos.length) {
+          setHasMore(false);
+        }
+        return prevPage + 1;
+      }
+      return prevPage;
+    });
+  };
 
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
+    const handleScroll = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = container;
+      if (scrollWidth - (scrollLeft + clientWidth) < 300 && hasMore) {
+        loadMorePhotos();
+      }
+    };
+
     const handleWheel = (e: WheelEvent) => {
       container.scrollLeft += e.deltaY;
+      handleScroll();
     };
 
     container.addEventListener('wheel', handleWheel, { passive: false });
-    return () => container.removeEventListener('wheel', handleWheel);
-  }, []);
+    container.addEventListener('scroll', handleScroll);
+    return () => {
+      container.removeEventListener('wheel', handleWheel);
+      container.removeEventListener('scroll', handleScroll);
+    };
+  }, [hasMore]);
 
   function getLocalizedName(name: any) {
     return name[language];
@@ -27,7 +65,7 @@ const Gallery = () => {
     <div className="h-screen flex flex-col px-4 overflow-hidden">
       <div ref={scrollContainerRef} className="flex-1 overflow-x-auto hide-scrollbar">
         <div className="inline-flex gap-8 px-4 h-full items-center">
-          {galleryContent.photos.map((photo) => (
+          {displayedPhotos.map((photo) => (
             <div
               key={photo.id}
               className="min-w-[300px] h-[calc(100vh-12rem)] cursor-pointer flex-shrink-0"
@@ -69,16 +107,6 @@ const Gallery = () => {
           </div>
         </div>
       )}
-
-      <style jsx>{`
-        .hide-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </div>
   );
 }
