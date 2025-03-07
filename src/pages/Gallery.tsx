@@ -40,6 +40,8 @@ const Gallery = () => {
           setHasMore(false);
         }
         return prevPage + 1;
+      } else if (newPhotos.length === 0 && selectedLabel) {
+        setDisplayedPhotos([]);
       }
       return prevPage;
     });
