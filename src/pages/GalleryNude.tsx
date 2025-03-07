@@ -58,17 +58,17 @@ const Gallery = () => {
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       <div ref={scrollContainerRef} className="flex-1 overflow-x-auto hide-scrollbar">
-        <div className="inline-flex gap-8 px-4 h-full items-center">
+        <div className="inline-flex gap-4 md:gap-8 px-2 md:px-4 h-full items-center">
           {displayedPhotos.map((photo) => (
             <div
               key={photo.id}
-              className="min-w-[300px] h-full cursor-pointer flex-shrink-0 py-4"
+              className="min-w-[90vw] md:min-w-[300px] h-[80vh] md:h-full cursor-pointer flex-shrink-0 py-2 md:py-4"
               onClick={() => setSelectedPhoto(photo)}
             >
               <div className="relative group h-full">
                 <img
                   src={photo.url}
-                  className="w-full h-full object-contain group-hover:opacity-90 transition-opacity rounded-lg"
+                  className="w-full h-full object-cover md:object-contain group-hover:opacity-90 transition-opacity rounded-lg"
                 />
               </div>
             </div>
