@@ -10,7 +10,7 @@ const Cafe = () => {
 
   return (
     <div className="min-h-screen bg-black px-4 py-8 max-w-4xl mx-auto">
-      <h1 className="text-4xl font-light mb-8 text-center">{getLocalizedText('cafe.title')}</h1>
+      <h1 className="text-4xl font-light mb-8 text-center font-['Big_Shoulders_Stencil']">{getLocalizedText('cafe.title')}</h1>
       <div>
         <div>
           {Object.entries(menuContent.menuCategories).map(([category, items]) => (
