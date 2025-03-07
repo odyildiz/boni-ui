@@ -9,6 +9,7 @@ const Cafe = lazy(() => import('./pages/Cafe').then(module => ({ default: module
 const Contact = lazy(() => import('./pages/Contact').then(module => ({ default: module.default || module })));
 const Bio = lazy(() => import('./pages/Bio').then(module => ({ default: module.default || module })));
 const Gallery = lazy(() => import('./pages/Gallery').then(module => ({ default: module.default || module })));
+const GalleryNude = lazy(() => import('./pages/GalleryNude').then(module => ({ default: module.default || module })));
 const Studio = lazy(() => import('./pages/Studio').then(module => ({ default: module.default || module })));
 
 const AppRoutes: React.FC = () => {
@@ -29,6 +30,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/en/contact" element={<Contact />} />
             <Route path="/en/bio" element={<Bio />} />
             <Route path="/en/gallery" element={<Gallery />} />
+            <Route path="/en/nude" element={<GalleryNude />} />
             <Route path="/en/studio" element={<Studio />} />
 
             {/* Turkish routes */}
@@ -37,6 +39,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/bio" element={<Bio />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/nude" element={<GalleryNude />} />
             <Route path="/studio" element={<Studio />} />
 
             {/* Redirect root to default language */}
