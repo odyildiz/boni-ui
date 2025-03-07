@@ -20,7 +20,7 @@ const Gallery = () => {
     setCurrentPage(prevPage => {
       const start = prevPage * photosPerPage;
       const end = start + photosPerPage;
-      const newPhotos = galleryContent.photos.slice(start, end);
+      const newPhotos = galleryContent.photos.filter(photo => !photo.labelIds.includes(5)).slice(start, end);
 
       if (newPhotos.length > 0) {
         setDisplayedPhotos(prev => [...prev, ...newPhotos]);
