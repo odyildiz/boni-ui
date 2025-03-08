@@ -24,7 +24,7 @@ const GalleryPhotoCard: React.FC<GalleryPhotoCardProps> = ({
   return (
     <div
       key={photo.id}
-      className={`min-w-[90vw] md:min-w-[300px] ${imageStyle?.containerClassName || 'h-[80vh] md:h-[calc(100vh-12rem)]'} cursor-pointer flex-shrink-0 py-2 md:py-4`}
+      className={`photo-card min-w-[90vw] md:min-w-[300px] ${imageStyle?.containerClassName || 'h-[80vh] md:h-[calc(100vh-12rem)]'} cursor-pointer flex-shrink-0 py-2 md:py-4`}
       onClick={onClick}
     >
       <div className="relative group h-[90%] border border-gray-200/10 rounded-lg overflow-hidden">
