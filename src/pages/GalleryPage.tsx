@@ -4,11 +4,11 @@ import '../styles/Gallery.css';
 import Gallery from '../components/gallery/Gallery';
 import { useGallery } from '../context/GalleryContext';
 
-const GalleryNude = () => {
+const GalleryPage = () => {
   const { displayedPhotos, hasMore, loadMorePhotos, handleLabelClick } = useGallery();
 
   useEffect(() => {
-    handleLabelClick(5); // 5 is the ID of the "nude" label
+    handleLabelClick(null); // 5 is the ID of the "nude" label
   }, []);
 
   return (
@@ -18,18 +18,18 @@ const GalleryNude = () => {
         labels={galleryLabelContent.labels}
         loadMorePhotos={loadMorePhotos}
         hasMorePhotos={hasMore}
-        hasFilter={false}
-        hasTitle={false}
-        hasDescription={false}
-        process="nude"
-        includeLabelIds={[5]} // Only include nude photos
+        hasFilter={true}
+        hasTitle={true}
+        hasDescription={true}
+        process="gallery"
+        excludeLabelIds={[5]} // Exclude nude photos from regular gallery
         imageStyle={{
-          containerClassName: 'h-screen',
-          imageClassName: 'object-contain'
+          containerClassName: 'h-[80vh] md:h-[calc(100vh-12rem)]',
+          imageClassName: 'object-cover md:object-contain'
         }}
       />
     </div>
   );
 }
 
-export default GalleryNude;
+export default GalleryPage;
