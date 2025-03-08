@@ -6,7 +6,7 @@ import { Instagram } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import '../styles/Navigation.css';
-import boniLogo from '../../boni-logo.jpg';
+import bonigraphyLogo from '../../media/bonigraphy-logo.png'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,8 +20,12 @@ const Navigation = () => {
     <nav className="navigation">
       <div className="nav-brand">
         <Link to={getLocalizedPath('/')}>
-          <img src={boniLogo} alt="Boni Cafe & Studio" className="h-8 mr-2" />
-          <span>Boni Cafe & Studio</span>
+        <img 
+          src={bonigraphyLogo} 
+          width="200px" 
+          height="200px" 
+          style={{ display: 'block', margin: '0 auto' }}
+        />
         </Link>
       </div>
       
@@ -33,9 +37,10 @@ const Navigation = () => {
 
       <ul className={`nav-links ${isOpen ? 'active' : ''}`}>
         <li><Link to={getLocalizedPath('/')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.home')}</Link></li>
-        <li><Link to={getLocalizedPath('/cafe')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.cafe')}</Link></li>
         <li><Link to={getLocalizedPath('/gallery')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.gallery')}</Link></li>
+        <li><Link to={getLocalizedPath('/nude')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.nude')}</Link></li>
         <li><Link to={getLocalizedPath('/studio')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.studio')}</Link></li>
+        <li><Link to={getLocalizedPath('/cafe')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.cafe')}</Link></li>
         <li><Link to={getLocalizedPath('/bio')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.bio')}</Link></li>
         <li><Link to={getLocalizedPath('/contact')} onClick={() => setIsOpen(false)}>{getLocalizedText('nav.contact')}</Link></li>
         <li className="instagram-link">

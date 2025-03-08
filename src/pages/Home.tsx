@@ -1,23 +1,16 @@
-import React from 'react';
-import { useLanguage } from '../context/LanguageContext';
-
+import homeImage from '../../media/home.jpeg';
 const Home = () => {
-  const { getLocalizedText } = useLanguage();
-
   return (
-    <div className="pt-16">
-      <div className="relative h-screen">
-        <img
-          src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d"
-          alt={getLocalizedText('home.featuredImageAlt')}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-          <div className="text-center text-white">
-            <h1 className="text-5xl font-light mb-4">{getLocalizedText('home.welcome')}</h1>
-            <p className="text-xl">{getLocalizedText('home.description')}</p>
-          </div>
+    <div className="min-h-screen w-full relative bg-black">
+      <div className="px-2 sm:px-8 py-2 sm:py-8">
+        <div className="py-4 sm:py-12 px-2 sm:px-4 text-center">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-light mb-4 sm:mb-8 text-gray-200 font-['Big_Shoulders_Stencil']">ÖZENÇ YILDIZ PHOTOGRAPHER</h1>
         </div>
+        <img
+          src={homeImage}
+          className="w-full h-auto rounded-lg shadow-lg border border-gray-800"
+          alt="Özenç Yıldız Photography"
+        />
       </div>
     </div>
   );

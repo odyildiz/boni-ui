@@ -1,18 +1,18 @@
-import React from 'react';
+import bioJpeg from '../../media/bio.jpeg';
 import { useLanguage } from '../context/LanguageContext';
 
 const Bio = () => {
   const { getLocalizedText } = useLanguage();
   return (
     <div className="pt-24 px-4 max-w-4xl mx-auto">
-      <h1 className="text-4xl font-light mb-8">{getLocalizedText('bio.title')}</h1>
+      <h1 className="text-4xl font-light mb-8 text-[#C8B6A6]">{getLocalizedText('bio.title')}</h1>
       <div className="grid md:grid-cols-2 gap-8">
         <img
-          src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5"
+          src={bioJpeg}
           alt="Photographer portrait"
-          className="w-full h-96 object-cover"
+          className="w-full h-128 object-cover"
         />
-        <div>
+        <div className="text-gray-300">
           <p className="mb-4">
             {getLocalizedText('bio.p1')}  
           </p>
